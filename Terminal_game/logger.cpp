@@ -1,0 +1,53 @@
+#include "logger.h"
+#include <chrono>
+#include <ctime>
+#include <iomanip>
+
+Logger& Logger::instance()
+{
+    static Logger lg;
+    return lg;
+}
+
+Logger::Logger()
+{
+    ofs.open("game_log.txt", std::ios::out | std::ios::app);
+    if (ofs)
+    {
+        auto now = std::chrono::system_clock::now();
+        std::time_t t = std::chrono::system_clock::to_time_t(now);
+        std::tm timeinfo;
+#ifdef _WIN32
+        localtime_s(&timeinfo, &t);
+#else
+        localtime_r(&t, &timeinfo);
+#endif
+        ofs << "--- Log started: " << std::put_time(&timeinfo, "%F %T") << " ---\n";
+    }
+}
+
+Logger::~Logger()
+{
+    if (ofs)
+    {
+        ofs << "--- Log closed ---\n";
+        ofs.close();
+    }
+}
+
+void Logger::log(const std::string& msg)
+{
+    std::lock_guard<std::mutex> lk(mtx);
+    if (!ofs)
+        return;
+    auto now = std::chrono::system_clock::now();
+    std::time_t t = std::chrono::system_clock::to_time_t(now);
+    std::tm timeinfo;
+#ifdef _WIN32
+    localtime_s(&timeinfo, &t);
+#else
+    localtime_r(&t, &timeinfo);
+#endif
+    ofs << "[" << std::put_time(&timeinfo, "%F %T") << "] " << msg << "\n";
+    ofs.flush();
+}

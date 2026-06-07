@@ -1,10 +1,14 @@
 #include <iostream>
-#include "location.h"
+#include "location_factory.h"
+#include "player.h"
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	Location location(1);
-	location.init();
+
+	// «апускаем игру с игроком, начина€ с локации 1
+	auto start = LocationFactory::get(1);
+	Player player(start);
+	player.play();
 	return 0;
 }

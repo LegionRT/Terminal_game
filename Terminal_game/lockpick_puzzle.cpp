@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include <algorithm>
+#include "logger.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -58,6 +59,8 @@ void LockpickPuzzle::render()
 void LockpickPuzzle::start()
 {
 	render();
+
+	Logger::instance().log("Lockpick puzzle started");
 }
 
 bool LockpickPuzzle::solve()
@@ -68,6 +71,8 @@ bool LockpickPuzzle::solve()
 
 		int input;
 		std::cin >> input;
+
+		Logger::instance().log(std::string("Lockpick input: ") + std::to_string(input));
 
 		bool found = false;
 
@@ -84,6 +89,8 @@ bool LockpickPuzzle::solve()
 		if (!found)
 		{
 			std::cout << "\n✖ Неверно! Замок сброшен...\n";
+
+			Logger::instance().log("Lockpick failed, resetting");
 
 #ifdef _WIN32
 			system("pause");

@@ -1,6 +1,7 @@
 #include "math_puzzle.h"
 #include <iostream>
 #include <random>
+#include "logger.h"
 
 MathPuzzle::MathPuzzle()
 	: Puzzle("Math"),

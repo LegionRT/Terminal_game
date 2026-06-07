@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 
 #include <vector>
 #include "door.h"
@@ -31,8 +32,14 @@ public:
 	void generate();
 	void draw() const;
 
+	// Получить список дверей (можно менять состояние дверей через возвращаемый reference)
+	std::vector<Door>& getDoors();
+
 	TileType getTile(int x, int y) const;
 	void setTile(int x, int y, TileType type);
+
+	// Добавляет или обновляет дверь в указанных координатах
+	void addOrUpdateDoorAt(int x, int y, int targetId, bool isLocked, int puzzleNum);
 
 	static int getWidth() { return WIDTH; }
 	static int getHeight() { return HEIGHT; }
