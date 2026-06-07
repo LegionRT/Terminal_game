@@ -1,7 +1,6 @@
 #include "map.h"
 #include <iostream>
 #include <algorithm>
-#include <cstdlib>
 #include <string>
 #include <random>
 #include <array>
