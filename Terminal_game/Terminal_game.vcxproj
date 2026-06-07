@@ -125,13 +125,21 @@
   <ItemGroup>
     <ClCompile Include="door.cpp" />
     <ClCompile Include="location.cpp" />
+    <ClCompile Include="lockpick_puzzle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
+    <ClCompile Include="math_puzzle.cpp" />
+    <ClCompile Include="puzzle.cpp" />
+    <ClCompile Include="riddle_puzzle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="door.h" />
     <ClInclude Include="location.h" />
+    <ClInclude Include="lockpick_puzzle.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="math_puzzle.h" />
+    <ClInclude Include="puzzle.h" />
+    <ClInclude Include="riddle_puzzle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
