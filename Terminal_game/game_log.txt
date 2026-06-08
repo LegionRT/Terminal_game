@@ -1,0 +1,745 @@
+--- Log started: 2026-06-08 03:50:10 ---
+[2026-06-08 03:50:10] Entered location 1
+[2026-06-08 03:50:13] Player selected action 1 in location 1
+[2026-06-08 03:50:13] Lockpick puzzle started
+[2026-06-08 03:50:14] Lockpick input: 2
+[2026-06-08 03:50:15] Lockpick input: 3
+[2026-06-08 03:50:15] Lockpick input: 4
+[2026-06-08 03:50:15] Lockpick input: 5
+[2026-06-08 03:50:16] Lockpick input: 1
+[2026-06-08 03:50:16] Door unlocked via puzzle at (0,5) -> target 2
+[2026-06-08 03:50:16] Transition to location 2
+[2026-06-08 03:50:17] Entered location 2
+[2026-06-08 03:50:19] Player selected action 1 in location 2
+[2026-06-08 03:50:19] Transition to location 1
+[2026-06-08 03:50:19] Entered location 1
+[2026-06-08 03:50:20] Player selected action 1 in location 1
+[2026-06-08 03:50:20] Transition to location 2
+[2026-06-08 03:50:21] Entered location 2
+[2026-06-08 03:50:21] Player selected action 1 in location 2
+[2026-06-08 03:50:21] Transition to location 1
+[2026-06-08 03:50:21] Entered location 1
+[2026-06-08 03:50:22] Player selected action 1 in location 1
+[2026-06-08 03:50:22] Transition to location 2
+[2026-06-08 03:50:22] Entered location 2
+[2026-06-08 03:50:22] Player selected action 1 in location 2
+[2026-06-08 03:50:22] Transition to location 1
+[2026-06-08 03:50:23] Entered location 1
+[2026-06-08 03:50:23] Player selected action 1 in location 1
+[2026-06-08 03:50:23] Transition to location 2
+[2026-06-08 03:50:23] Entered location 2
+[2026-06-08 03:50:23] Player selected action 1 in location 2
+[2026-06-08 03:50:23] Transition to location 1
+[2026-06-08 03:50:24] Entered location 1
+[2026-06-08 03:50:24] Player selected action 1 in location 1
+[2026-06-08 03:50:24] Transition to location 2
+[2026-06-08 03:50:24] Entered location 2
+[2026-06-08 03:50:25] Player selected action 1 in location 2
+[2026-06-08 03:50:25] Transition to location 1
+[2026-06-08 03:50:25] Entered location 1
+[2026-06-08 03:50:25] Player selected action 1 in location 1
+[2026-06-08 03:50:25] Transition to location 2
+[2026-06-08 03:50:25] Entered location 2
+[2026-06-08 03:50:26] Player selected action 1 in location 2
+[2026-06-08 03:50:26] Transition to location 1
+[2026-06-08 03:50:26] Entered location 1
+[2026-06-08 03:50:26] Player selected action 1 in location 1
+[2026-06-08 03:50:26] Transition to location 2
+[2026-06-08 03:50:26] Entered location 2
+[2026-06-08 03:50:27] Player selected action 1 in location 2
+[2026-06-08 03:50:27] Transition to location 1
+[2026-06-08 03:50:27] Entered location 1
+[2026-06-08 03:50:28] Player selected action 1 in location 1
+[2026-06-08 03:50:28] Transition to location 2
+[2026-06-08 03:50:28] Entered location 2
+[2026-06-08 03:50:28] Player selected action 1 in location 2
+[2026-06-08 03:50:28] Transition to location 1
+[2026-06-08 03:50:28] Entered location 1
+[2026-06-08 03:50:29] Player selected action 1 in location 1
+[2026-06-08 03:50:29] Transition to location 2
+[2026-06-08 03:50:29] Entered location 2
+[2026-06-08 03:50:30] Player selected action 2 in location 2
+[2026-06-08 03:50:30] Transition to location 3
+[2026-06-08 03:50:30] Entered location 3
+[2026-06-08 03:50:31] Player selected action 2 in location 3
+[2026-06-08 03:50:31] Transition to location 4
+[2026-06-08 03:50:31] Entered location 4
+[2026-06-08 03:50:32] Player selected action 2 in location 4
+[2026-06-08 03:50:32] Transition to location 5
+[2026-06-08 03:50:33] Entered location 5
+[2026-06-08 03:50:34] Player selected action 1 in location 5
+[2026-06-08 03:50:34] Transition to location 4
+[2026-06-08 03:50:34] Entered location 4
+[2026-06-08 03:50:35] Player selected action 1 in location 4
+[2026-06-08 03:50:35] Transition to location 3
+[2026-06-08 03:50:35] Entered location 3
+[2026-06-08 03:50:36] Player selected action 3 in location 3
+[2026-06-08 03:50:36] Player exited game
+--- Log closed ---
+--- Log started: 2026-06-08 03:50:39 ---
+[2026-06-08 03:50:39] Entered location 1
+[2026-06-08 03:50:40] Player selected action 1 in location 1
+[2026-06-08 03:50:40] Lockpick puzzle started
+[2026-06-08 03:50:41] Lockpick input: 3
+[2026-06-08 03:50:42] Lockpick input: 2
+[2026-06-08 03:50:42] Lockpick input: 1
+[2026-06-08 03:50:42] Lockpick input: 4
+[2026-06-08 03:50:43] Lockpick input: 2
+[2026-06-08 03:50:43] Lockpick failed, resetting
+[2026-06-08 03:50:45] Lockpick input: 31
+[2026-06-08 03:50:45] Lockpick failed, resetting
+[2026-06-08 03:50:46] Lockpick input: 2
+[2026-06-08 03:50:46] Lockpick input: 3
+[2026-06-08 03:50:47] Lockpick input: 4
+[2026-06-08 03:50:47] Lockpick input: 1
+[2026-06-08 03:50:48] Lockpick input: 2
+[2026-06-08 03:50:48] Lockpick failed, resetting
+[2026-06-08 03:50:50] Lockpick input: 1
+[2026-06-08 03:50:50] Lockpick input: 2
+[2026-06-08 03:50:51] Lockpick input: 3
+[2026-06-08 03:50:51] Lockpick input: 4
+[2026-06-08 03:50:51] Lockpick input: 5
+[2026-06-08 03:50:51] Door unlocked via puzzle at (10,9) -> target 2
+[2026-06-08 03:50:51] Transition to location 2
+[2026-06-08 03:50:52] Entered location 2
+[2026-06-08 03:50:55] Player selected action 1 in location 2
+[2026-06-08 03:50:55] Transition to location 1
+[2026-06-08 03:50:55] Entered location 1
+[2026-06-08 03:50:56] Player selected action 1 in location 1
+[2026-06-08 03:50:56] Transition to location 2
+[2026-06-08 03:50:56] Entered location 2
+[2026-06-08 03:50:57] Player selected action 2 in location 2
+[2026-06-08 03:50:57] Transition to location 3
+[2026-06-08 03:50:57] Entered location 3
+[2026-06-08 03:50:57] Player selected action 2 in location 3
+[2026-06-08 03:50:57] Transition to location 4
+[2026-06-08 03:50:58] Entered location 4
+[2026-06-08 03:50:58] Player selected action 2 in location 4
+[2026-06-08 03:50:58] Lockpick puzzle started
+[2026-06-08 03:50:59] Lockpick input: 2
+[2026-06-08 03:51:00] Lockpick input: 3
+[2026-06-08 03:51:00] Lockpick failed, resetting
+[2026-06-08 03:51:08] Lockpick input: 2341
+[2026-06-08 03:51:08] Lockpick failed, resetting
+[2026-06-08 03:51:09] Lockpick input: 3
+[2026-06-08 03:51:10] Lockpick input: 2
+[2026-06-08 03:51:10] Lockpick input: 1
+[2026-06-08 03:51:11] Lockpick input: 3
+[2026-06-08 03:51:11] Lockpick failed, resetting
+[2026-06-08 03:51:12] Lockpick input: 2
+[2026-06-08 03:51:12] Lockpick input: 1
+[2026-06-08 03:51:13] Lockpick input: 3
+[2026-06-08 03:51:13] Lockpick input: 4
+[2026-06-08 03:51:13] Door unlocked via puzzle at (0,5) -> target 5
+[2026-06-08 03:51:13] Transition to location 5
+[2026-06-08 03:51:14] Entered location 5
+[2026-06-08 03:51:19] Player selected action 2 in location 5
+[2026-06-08 03:51:19] Player exited game
+--- Log closed ---
+--- Log started: 2026-06-08 03:52:52 ---
+[2026-06-08 03:52:52] Entered location 1
+[2026-06-08 03:52:54] Entered location 1
+[2026-06-08 03:52:56] Entered location 1
+[2026-06-08 03:52:56] Entered location 1
+[2026-06-08 03:52:57] Player selected action 1 in location 1
+[2026-06-08 03:52:57] Transition to location 2
+[2026-06-08 03:52:58] Entered location 2
+[2026-06-08 03:52:59] Player selected action 2 in location 2
+[2026-06-08 03:53:02] Door unlocked via puzzle at (10,0) -> target 3
+[2026-06-08 03:53:02] Transition to location 3
+[2026-06-08 03:53:03] Entered location 3
+[2026-06-08 03:53:04] Player selected action 2 in location 3
+[2026-06-08 03:53:04] Riddle presented: Что всегда впереди, но его нельзя увидеть?
+[2026-06-08 03:53:13] Riddle question not recognized: Что всегда впереди, но его нельзя увидеть?
+[2026-06-08 03:53:13] Failed to open door at (0,5) -> target 4
+--- Log started: 2026-06-08 03:54:12 ---
+[2026-06-08 03:54:12] Entered location 1
+[2026-06-08 03:54:14] Entered location 1
+[2026-06-08 03:54:17] Player selected action 1 in location 1
+[2026-06-08 03:54:17] Transition to location 2
+[2026-06-08 03:54:19] Entered location 2
+[2026-06-08 03:54:21] Player selected action 2 in location 2
+[2026-06-08 03:54:21] Transition to location 3
+[2026-06-08 03:54:21] Entered location 3
+[2026-06-08 03:54:23] Player selected action 2 in location 3
+[2026-06-08 03:54:23] Riddle presented: Что принадлежит вам, но другие используют его чаще, чем вы?
+[2026-06-08 03:54:26] Riddle answered correctly: input=name question=Что принадлежит вам, но другие используют его чаще, чем вы?
+[2026-06-08 03:54:26] Door unlocked via puzzle at (10,9) -> target 4
+[2026-06-08 03:54:26] Transition to location 4
+[2026-06-08 03:54:31] Entered location 4
+[2026-06-08 03:54:33] Player selected action 2 in location 4
+[2026-06-08 03:54:33] Transition to location 5
+[2026-06-08 03:54:33] Entered location 5
+[2026-06-08 03:54:36] Player selected action 2 in location 5
+[2026-06-08 03:54:36] Player exited game
+--- Log closed ---
+--- Log started: 2026-06-08 13:01:22 ---
+[2026-06-08 13:01:22] Entered location 1
+[2026-06-08 13:01:26] Player selected action 1 in location 1
+[2026-06-08 13:01:26] Transition to location 2
+[2026-06-08 13:01:27] Entered location 2
+[2026-06-08 13:01:29] Player selected action 2 in location 2
+[2026-06-08 13:01:29] Transition to location 3
+[2026-06-08 13:01:30] Entered location 3
+[2026-06-08 13:01:32] Player selected action 2 in location 3
+[2026-06-08 13:01:32] Riddle presented: Что всегда идёт, но никогда не приходит?
+[2026-06-08 13:01:55] Riddle answered incorrectly: input=§ ўва  question=Что всегда идёт, но никогда не приходит?
+[2026-06-08 13:01:55] Failed to open door at (10,0) -> target 4
+[2026-06-08 13:01:56] Entered location 3
+[2026-06-08 13:01:57] Player selected action 2 in location 3
+[2026-06-08 13:01:57] Riddle presented: Что можно поймать, но нельзя бросить?
+[2026-06-08 13:02:10] Riddle answered correctly: input=cold question=Что можно поймать, но нельзя бросить?
+[2026-06-08 13:02:10] Door unlocked via puzzle at (10,0) -> target 4
+[2026-06-08 13:02:10] Transition to location 4
+[2026-06-08 13:02:11] Entered location 4
+[2026-06-08 13:02:14] Player selected action 2 in location 4
+[2026-06-08 13:02:14] Lockpick puzzle started
+[2026-06-08 13:02:18] Lockpick input: 24
+[2026-06-08 13:02:18] Lockpick failed, resetting
+[2026-06-08 13:02:21] Lockpick input: 1
+[2026-06-08 13:02:21] Lockpick input: 2
+[2026-06-08 13:02:22] Lockpick input: 3
+[2026-06-08 13:02:22] Door unlocked via puzzle at (19,5) -> target 5
+[2026-06-08 13:02:22] Transition to location 5
+[2026-06-08 13:02:23] Entered location 5
+[2026-06-08 13:02:25] Player selected action 1 in location 5
+[2026-06-08 13:02:25] Transition to location 4
+[2026-06-08 13:02:26] Entered location 4
+--- Log started: 2026-06-08 14:38:58 ---
+[2026-06-08 14:38:58] Entered location 1
+[2026-06-08 14:39:00] Player selected action 1 in location 1
+[2026-06-08 14:39:00] Lockpick puzzle started
+[2026-06-08 14:39:02] Lockpick input: 3
+[2026-06-08 14:39:02] Lockpick input: 2
+[2026-06-08 14:39:02] Lockpick input: 1
+[2026-06-08 14:39:03] Lockpick input: 4
+[2026-06-08 14:39:03] Lockpick input: 5
+[2026-06-08 14:39:03] Door unlocked via puzzle at (10,0) -> target 2
+[2026-06-08 14:39:03] Transition to location 2
+[2026-06-08 14:39:03] Entered location 2
+[2026-06-08 14:39:05] Player selected action 1 in location 2
+[2026-06-08 14:39:05] Transition to location 1
+[2026-06-08 14:39:06] Entered location 1
+[2026-06-08 14:39:06] Player selected action 1 in location 1
+[2026-06-08 14:39:06] Transition to location 2
+[2026-06-08 14:39:06] Entered location 2
+[2026-06-08 14:39:07] Player selected action 1 in location 2
+[2026-06-08 14:39:07] Transition to location 1
+[2026-06-08 14:39:07] Entered location 1
+[2026-06-08 14:39:07] Player selected action 1 in location 1
+[2026-06-08 14:39:07] Transition to location 2
+[2026-06-08 14:39:07] Entered location 2
+[2026-06-08 14:39:08] Player selected action 1 in location 2
+[2026-06-08 14:39:08] Transition to location 1
+[2026-06-08 14:39:08] Entered location 1
+[2026-06-08 14:39:08] Player selected action 1 in location 1
+[2026-06-08 14:39:08] Transition to location 2
+[2026-06-08 14:39:09] Entered location 2
+[2026-06-08 14:39:09] Player selected action 1 in location 2
+[2026-06-08 14:39:09] Transition to location 1
+[2026-06-08 14:39:09] Entered location 1
+[2026-06-08 14:39:09] Player selected action 1 in location 1
+[2026-06-08 14:39:09] Transition to location 2
+[2026-06-08 14:39:10] Entered location 2
+[2026-06-08 14:39:10] Player selected action 1 in location 2
+[2026-06-08 14:39:10] Transition to location 1
+[2026-06-08 14:39:10] Entered location 1
+[2026-06-08 14:39:10] Player selected action 1 in location 1
+[2026-06-08 14:39:10] Transition to location 2
+[2026-06-08 14:39:11] Entered location 2
+[2026-06-08 14:39:11] Player selected action 1 in location 2
+[2026-06-08 14:39:11] Transition to location 1
+[2026-06-08 14:39:11] Entered location 1
+[2026-06-08 14:39:12] Player selected action 1 in location 1
+[2026-06-08 14:39:12] Transition to location 2
+[2026-06-08 14:39:12] Entered location 2
+[2026-06-08 14:39:12] Player selected action 1 in location 2
+[2026-06-08 14:39:12] Transition to location 1
+[2026-06-08 14:39:12] Entered location 1
+[2026-06-08 14:39:13] Player selected action 1 in location 1
+[2026-06-08 14:39:13] Transition to location 2
+[2026-06-08 14:39:13] Entered location 2
+--- Log started: 2026-06-08 15:42:16 ---
+[2026-06-08 15:42:16] Entered location 1
+[2026-06-08 15:42:21] Player selected action 5 in location 1
+[2026-06-08 15:42:29] Entered location 1
+[2026-06-08 15:42:32] Player selected action 2 in location 1
+[2026-06-08 15:43:10] Entered location 1
+[2026-06-08 15:43:14] Player selected action 3 in location 1
+--- Log started: 2026-06-08 15:46:00 ---
+[2026-06-08 15:46:00] Entered location 1
+[2026-06-08 15:46:05] Player selected action 2 in location 1
+[2026-06-08 15:46:26] Entered location 1
+[2026-06-08 15:46:28] Player selected action 2 in location 1
+[2026-06-08 15:46:30] Entered location 1
+[2026-06-08 15:46:32] Player selected action 2 in location 1
+[2026-06-08 15:46:42] Entered location 1
+[2026-06-08 15:46:44] Player selected action 2 in location 1
+[2026-06-08 15:47:13] Entered location 1
+[2026-06-08 15:47:17] Player selected action 1 in location 1
+[2026-06-08 15:47:17] Transition to location 2
+[2026-06-08 15:47:18] Entered location 2
+[2026-06-08 15:47:22] Player selected action 1 in location 2
+[2026-06-08 15:47:22] Transition to location 1
+[2026-06-08 15:47:22] Entered location 1
+[2026-06-08 15:47:23] Player selected action 1 in location 1
+[2026-06-08 15:47:23] Transition to location 2
+[2026-06-08 15:47:23] Entered location 2
+[2026-06-08 15:47:23] Player selected action 1 in location 2
+[2026-06-08 15:47:23] Transition to location 1
+[2026-06-08 15:47:24] Entered location 1
+[2026-06-08 15:47:24] Player selected action 1 in location 1
+[2026-06-08 15:47:24] Transition to location 2
+[2026-06-08 15:47:24] Entered location 2
+[2026-06-08 15:47:25] Player selected action 2 in location 2
+[2026-06-08 15:47:25] Transition to location 3
+[2026-06-08 15:47:25] Entered location 3
+[2026-06-08 15:47:28] Player selected action 1 in location 3
+[2026-06-08 15:47:28] Transition to location 2
+[2026-06-08 15:47:28] Entered location 2
+[2026-06-08 15:47:30] Player selected action 1 in location 2
+[2026-06-08 15:47:30] Transition to location 1
+[2026-06-08 15:47:30] Entered location 1
+[2026-06-08 15:47:32] Player selected action 1 in location 1
+[2026-06-08 15:47:32] Transition to location 2
+[2026-06-08 15:47:32] Entered location 2
+[2026-06-08 15:47:33] Player selected action 2 in location 2
+[2026-06-08 15:47:33] Transition to location 3
+[2026-06-08 15:47:33] Entered location 3
+[2026-06-08 15:47:34] Player selected action 2 in location 3
+[2026-06-08 15:47:34] Riddle presented: What grows down instead of up?
+[2026-06-08 15:47:43] Riddle answered incorrectly: input=shadow question=What grows down instead of up?
+[2026-06-08 15:47:43] Failed to open door at (10,0) -> target 4
+[2026-06-08 15:47:43] Entered location 3
+[2026-06-08 15:47:46] Player selected action 2 in location 3
+[2026-06-08 15:47:46] Riddle presented: What belongs to you but others use it more than you?
+[2026-06-08 15:47:49] Riddle answered correctly: input=name question=What belongs to you but others use it more than you?
+[2026-06-08 15:47:49] Door unlocked via puzzle at (10,0) -> target 4
+[2026-06-08 15:47:49] Transition to location 4
+[2026-06-08 15:47:50] Entered location 4
+[2026-06-08 15:47:57] Player selected action 4 in location 4
+[2026-06-08 15:48:15] Entered location 4
+[2026-06-08 15:48:17] Player selected action 4 in location 4
+[2026-06-08 15:48:20] Entered location 4
+[2026-06-08 15:48:23] Player selected action 4 in location 4
+[2026-06-08 15:48:36] Entered location 4
+[2026-06-08 15:48:39] Player selected action 2 in location 4
+[2026-06-08 15:48:39] Transition to location 5
+[2026-06-08 15:48:39] Entered location 5
+--- Log started: 2026-06-08 16:27:19 ---
+[2026-06-08 16:27:19] Entered location 1
+[2026-06-08 16:27:25] Player selected action 4 in location 1
+[2026-06-08 16:27:27] Entered location 1
+[2026-06-08 16:27:29] Player selected action 4 in location 1
+[2026-06-08 16:27:35] Entered location 1
+[2026-06-08 16:27:40] Player selected action 2 in location 1
+[2026-06-08 16:27:42] Entered location 1
+[2026-06-08 16:27:48] Player selected action 1 in location 1
+[2026-06-08 16:27:48] Transition to location 2
+[2026-06-08 16:27:48] Entered location 2
+[2026-06-08 16:27:53] Player selected action 6 in location 2
+[2026-06-08 16:27:54] Entered location 2
+[2026-06-08 16:27:57] Player selected action 6 in location 2
+[2026-06-08 16:28:08] Entered location 2
+[2026-06-08 16:28:14] Player selected action 2 in location 2
+[2026-06-08 16:28:14] Transition to location 3
+[2026-06-08 16:28:15] Entered location 3
+[2026-06-08 16:28:17] Player selected action 4 in location 3
+[2026-06-08 16:28:18] Entered location 3
+[2026-06-08 16:28:22] Player selected action 2 in location 3
+[2026-06-08 16:28:22] Riddle presented: What belongs to you but others use it more than you?
+[2026-06-08 16:29:55] Riddle answered correctly: input=name question=What belongs to you but others use it more than you?
+[2026-06-08 16:29:55] Door unlocked via puzzle at (19,5) -> target 4
+[2026-06-08 16:29:55] Transition to location 4
+[2026-06-08 16:29:56] Entered location 4
+[2026-06-08 16:29:56] Player selected action 2 in location 4
+[2026-06-08 16:29:56] Lockpick puzzle started
+[2026-06-08 16:29:59] Lockpick input: 1
+[2026-06-08 16:30:00] Lockpick input: 2
+[2026-06-08 16:30:01] Lockpick input: 3
+[2026-06-08 16:30:01] Lockpick input: 4
+[2026-06-08 16:30:02] Lockpick input: 5
+[2026-06-08 16:30:02] Door unlocked via puzzle at (19,5) -> target 5
+[2026-06-08 16:30:02] Transition to location 5
+[2026-06-08 16:30:03] Entered location 5
+[2026-06-08 16:30:10] Player selected action 5 in location 5
+[2026-06-08 16:30:11] Entered location 5
+[2026-06-08 16:30:13] Player selected action 2 in location 5
+[2026-06-08 16:30:16] Entered location 5
+[2026-06-08 16:30:20] Player selected action 2 in location 5
+[2026-06-08 16:30:30] Entered location 5
+[2026-06-08 16:53:39] Entered location 5
+[2026-06-08 16:53:39] Entered location 5
+[2026-06-08 16:53:40] Entered location 5
+[2026-06-08 16:53:40] Entered location 5
+[2026-06-08 16:53:41] Entered location 5
+[2026-06-08 16:53:42] Player selected action 2 in location 5
+[2026-06-08 16:53:44] Player died
+--- Log closed ---
+--- Log started: 2026-06-08 20:57:21 ---
+[2026-06-08 20:57:21] Entered location 1
+[2026-06-08 20:57:31] Player selected action 5 in location 1
+[2026-06-08 20:57:31] Dialog started with NPC: Hermit
+[2026-06-08 20:57:40] Dialog finished with NPC: Hermit
+[2026-06-08 20:57:43] Entered location 1
+[2026-06-08 20:58:00] Player selected action 5 in location 1
+[2026-06-08 20:58:16] Entered location 1
+[2026-06-08 20:58:19] Player selected action 5 in location 1
+--- Log started: 2026-06-08 23:05:15 ---
+[2026-06-08 23:05:15] Entered location 1
+[2026-06-08 23:05:21] Player selected action 1 in location 1
+[2026-06-08 23:05:21] Lockpick puzzle started
+[2026-06-08 23:05:22] Lockpick input: 1
+[2026-06-08 23:05:23] Lockpick input: 2
+[2026-06-08 23:05:23] Lockpick input: 3
+[2026-06-08 23:05:23] Lockpick input: 4
+[2026-06-08 23:05:24] Lockpick input: 5
+[2026-06-08 23:05:24] Door unlocked via puzzle at (0,5) -> target 2
+[2026-06-08 23:05:24] Transition to location 2
+[2026-06-08 23:05:25] Entered location 2
+[2026-06-08 23:05:30] Player selected action 6 in location 2
+[2026-06-08 23:05:35] Entered location 2
+[2026-06-08 23:05:39] Player selected action 2 in location 2
+[2026-06-08 23:05:41] Door unlocked via puzzle at (10,9) -> target 3
+[2026-06-08 23:05:41] Transition to location 3
+[2026-06-08 23:05:41] Entered location 3
+[2026-06-08 23:05:44] Player selected action 4 in location 3
+[2026-06-08 23:05:46] Entered location 3
+[2026-06-08 23:05:48] Player selected action 4 in location 3
+[2026-06-08 23:05:48] Dialog started with NPC: Merchant
+[2026-06-08 23:06:01] NPC unlocked a door
+[2026-06-08 23:06:01] Dialog finished with NPC: Merchant
+[2026-06-08 23:06:03] Entered location 3
+[2026-06-08 23:06:04] Player selected action 2 in location 3
+[2026-06-08 23:06:04] Transition to location 4
+[2026-06-08 23:06:08] Entered location 4
+[2026-06-08 23:06:12] Player selected action 5 in location 4
+[2026-06-08 23:06:13] Entered location 4
+[2026-06-08 23:06:14] Player selected action 2 in location 4
+[2026-06-08 23:06:14] Transition to location 5
+[2026-06-08 23:06:15] Entered location 5
+[2026-06-08 23:06:21] Player selected action 4 in location 5
+[2026-06-08 23:06:26] Entered location 5
+[2026-06-08 23:06:28] Player selected action 2 in location 5
+[2026-06-08 23:06:33] Player died
+--- Log closed ---
+--- Log started: 2026-06-08 23:22:40 ---
+[2026-06-08 23:22:40] Entered location 1
+[2026-06-08 23:22:50] Player selected action 1 in location 1
+[2026-06-08 23:22:50] Transition to location 2
+[2026-06-08 23:22:51] Entered location 2
+[2026-06-08 23:22:52] Player selected action 2 in location 2
+[2026-06-08 23:22:52] Transition to location 3
+[2026-06-08 23:22:52] Entered location 3
+[2026-06-08 23:22:53] Player selected action 2 in location 3
+[2026-06-08 23:22:53] Transition to location 4
+[2026-06-08 23:22:53] Entered location 4
+[2026-06-08 23:22:54] Player selected action 2 in location 4
+[2026-06-08 23:22:54] Transition to location 5
+[2026-06-08 23:22:54] Entered location 5
+[2026-06-08 23:22:59] Player selected action 2 in location 5
+--- Log closed ---
+--- Log started: 2026-06-08 23:24:13 ---
+[2026-06-08 23:24:13] Entered location 1
+[2026-06-08 23:24:16] Lockpick puzzle started
+[2026-06-08 23:24:17] Lockpick input: 1
+[2026-06-08 23:24:17] Lockpick input: 2
+[2026-06-08 23:24:17] Lockpick input: 3
+[2026-06-08 23:24:18] Lockpick input: 4
+[2026-06-08 23:24:18] Lockpick input: 5
+[2026-06-08 23:24:18] Door unlocked via puzzle at (19,5) -> target 2
+[2026-06-08 23:24:18] Player selected action 1 in location 1
+[2026-06-08 23:24:18] Transition to location 2
+[2026-06-08 23:24:19] Entered location 2
+[2026-06-08 23:24:23] Door unlocked via puzzle at (10,0) -> target 3
+[2026-06-08 23:24:23] Player selected action 2 in location 2
+[2026-06-08 23:24:23] Transition to location 3
+[2026-06-08 23:24:23] Entered location 3
+[2026-06-08 23:24:25] Player selected action 2 in location 3
+[2026-06-08 23:24:25] Transition to location 4
+[2026-06-08 23:24:25] Entered location 4
+[2026-06-08 23:24:26] Lockpick puzzle started
+[2026-06-08 23:24:27] Lockpick input: 1
+[2026-06-08 23:24:28] Lockpick input: 2
+[2026-06-08 23:24:28] Lockpick input: 3
+[2026-06-08 23:24:30] Lockpick input: 4
+[2026-06-08 23:24:30] Door unlocked via puzzle at (10,0) -> target 5
+[2026-06-08 23:24:30] Player selected action 2 in location 4
+[2026-06-08 23:24:30] Transition to location 5
+[2026-06-08 23:24:31] Entered location 5
+[2026-06-08 23:24:35] Player selected action 2 in location 5
+--- Log closed ---
+--- Log started: 2026-06-08 23:32:56 ---
+[2026-06-08 23:32:56] Entered location 1
+[2026-06-08 23:32:59] Player selected action 4 in location 1
+[2026-06-08 23:32:59] Transition to location 69
+[2026-06-08 23:33:04] Entered location 69
+[2026-06-08 23:33:07] Player selected action 3 in location 69
+[2026-06-08 23:33:07] Transition to location 69
+[2026-06-08 23:33:08] Entered location 69
+[2026-06-08 23:33:11] Player selected action 3 in location 69
+[2026-06-08 23:33:11] Transition to location 69
+--- Log started: 2026-06-08 23:35:20 ---
+[2026-06-08 23:35:20] Entered location 1
+[2026-06-08 23:35:23] Player selected action 4 in location 1
+[2026-06-08 23:35:23] Transition to location 69
+[2026-06-08 23:35:34] Entered location 69
+--- Log started: 2026-06-08 23:36:47 ---
+[2026-06-08 23:36:47] Entered location 1
+[2026-06-08 23:36:50] Player selected action 4 in location 1
+[2026-06-08 23:36:50] Transition to location 69
+[2026-06-08 23:36:51] Entered location 69
+--- Log started: 2026-06-08 23:45:35 ---
+[2026-06-08 23:45:35] Entered location 1
+[2026-06-08 23:45:40] Player selected action 4 in location 1
+[2026-06-08 23:45:40] Transition to location 69
+[2026-06-08 23:45:42] Entered location 69
+[2026-06-08 23:45:45] Player selected action 3 in location 69
+[2026-06-08 23:45:45] Transition to location 69
+[2026-06-08 23:45:46] Entered location 69
+[2026-06-08 23:45:46] Player selected action 3 in location 69
+[2026-06-08 23:45:46] Transition to location 69
+[2026-06-08 23:45:46] Entered location 69
+[2026-06-08 23:45:47] Player selected action 3 in location 69
+[2026-06-08 23:45:47] Transition to location 69
+[2026-06-08 23:45:47] Entered location 69
+[2026-06-08 23:45:47] Player selected action 3 in location 69
+[2026-06-08 23:45:47] Transition to location 69
+[2026-06-08 23:45:47] Entered location 69
+[2026-06-08 23:45:48] Player selected action 3 in location 69
+[2026-06-08 23:45:48] Transition to location 69
+[2026-06-08 23:45:48] Entered location 69
+[2026-06-08 23:45:48] Player selected action 3 in location 69
+[2026-06-08 23:45:48] Transition to location 69
+[2026-06-08 23:45:48] Entered location 69
+[2026-06-08 23:45:49] Player selected action 3 in location 69
+[2026-06-08 23:45:49] Transition to location 69
+[2026-06-08 23:45:49] Entered location 69
+[2026-06-08 23:45:49] Player selected action 3 in location 69
+[2026-06-08 23:45:49] Transition to location 69
+[2026-06-08 23:45:49] Entered location 69
+[2026-06-08 23:45:50] Player selected action 3 in location 69
+[2026-06-08 23:45:50] Transition to location 69
+[2026-06-08 23:45:50] Entered location 69
+[2026-06-08 23:45:51] Player selected action 3 in location 69
+[2026-06-08 23:45:51] Transition to location 69
+[2026-06-08 23:45:51] Entered location 69
+[2026-06-08 23:45:51] Player selected action 3 in location 69
+[2026-06-08 23:45:51] Transition to location 69
+[2026-06-08 23:45:51] Entered location 69
+[2026-06-08 23:45:52] Player selected action 3 in location 69
+[2026-06-08 23:45:52] Transition to location 69
+[2026-06-08 23:45:52] Entered location 69
+[2026-06-08 23:45:52] Player selected action 3 in location 69
+[2026-06-08 23:45:52] Transition to location 69
+[2026-06-08 23:45:52] Entered location 69
+[2026-06-08 23:45:52] Player selected action 3 in location 69
+[2026-06-08 23:45:52] Transition to location 69
+[2026-06-08 23:45:53] Entered location 69
+[2026-06-08 23:45:53] Player selected action 3 in location 69
+[2026-06-08 23:45:53] Transition to location 69
+[2026-06-08 23:45:53] Entered location 69
+[2026-06-08 23:45:53] Player selected action 3 in location 69
+[2026-06-08 23:45:53] Transition to location 69
+--- Log started: 2026-06-08 23:46:48 ---
+[2026-06-08 23:46:48] Entered location 1
+[2026-06-08 23:46:59] Player selected action 2 in location 1
+[2026-06-08 23:47:03] Entered location 1
+[2026-06-08 23:47:06] Player selected action 5 in location 1
+[2026-06-08 23:47:06] Transition to location 69
+[2026-06-08 23:47:09] Entered location 69
+--- Log started: 2026-06-08 23:51:31 ---
+[2026-06-08 23:51:31] Entered location 1
+[2026-06-08 23:51:34] Player selected action 4 in location 1
+[2026-06-08 23:51:35] Entered location 1
+[2026-06-08 23:51:37] Player selected action 1 in location 1
+[2026-06-08 23:51:37] Transition to location 2
+[2026-06-08 23:51:37] Entered location 2
+[2026-06-08 23:51:43] Player selected action 4 in location 2
+[2026-06-08 23:51:43] Entered location 2
+[2026-06-08 23:51:47] Player selected action 2 in location 2
+[2026-06-08 23:51:47] Transition to location 3
+[2026-06-08 23:51:47] Entered location 3
+[2026-06-08 23:51:48] Player selected action 2 in location 3
+[2026-06-08 23:51:48] Transition to location 4
+[2026-06-08 23:51:48] Entered location 4
+[2026-06-08 23:51:53] Lockpick puzzle started
+[2026-06-08 23:51:54] Lockpick input: 1
+[2026-06-08 23:51:55] Lockpick input: 2
+[2026-06-08 23:51:55] Lockpick input: 3
+[2026-06-08 23:51:55] Lockpick input: 4
+[2026-06-08 23:51:56] Lockpick input: 5
+[2026-06-08 23:51:56] Door unlocked via puzzle at (10,0) -> target 5
+[2026-06-08 23:51:56] Player selected action 2 in location 4
+[2026-06-08 23:51:56] Transition to location 5
+[2026-06-08 23:51:56] Entered location 5
+[2026-06-08 23:52:01] Player selected action 2 in location 5
+--- Log closed ---
+--- Log started: 2026-06-09 00:18:52 ---
+[2026-06-09 00:18:52] Entered location 1
+--- Log started: 2026-06-09 00:41:48 ---
+[2026-06-09 00:41:48] Entered location 1
+[2026-06-09 00:41:56] Lockpick puzzle started
+[2026-06-09 00:41:57] Lockpick input: 1
+[2026-06-09 00:41:57] Lockpick input: 2
+[2026-06-09 00:41:57] Lockpick input: 3
+[2026-06-09 00:41:58] Lockpick input: 4
+[2026-06-09 00:41:58] Lockpick input: 5
+[2026-06-09 00:41:58] Door unlocked via puzzle at (10,0) -> target 2
+[2026-06-09 00:41:58] Player selected action 1 in location 1
+[2026-06-09 00:41:58] Transition to location 2
+[2026-06-09 00:41:59] Entered location 2
+[2026-06-09 00:42:05] Player selected action 7 in location 2
+[2026-06-09 00:42:06] Entered location 2
+[2026-06-09 00:42:16] Player selected action 8 in location 2
+[2026-06-09 00:42:16] Player exited game
+--- Log closed ---
+--- Log started: 2026-06-09 00:42:20 ---
+[2026-06-09 00:42:20] Entered location 1
+[2026-06-09 00:42:23] Player selected action 1 in location 1
+[2026-06-09 00:42:23] Transition to location 2
+[2026-06-09 00:42:24] Entered location 2
+[2026-06-09 00:42:24] Player selected action 1 in location 2
+[2026-06-09 00:42:24] Transition to location 1
+[2026-06-09 00:42:25] Entered location 1
+[2026-06-09 00:42:25] Player selected action 1 in location 1
+[2026-06-09 00:42:25] Transition to location 2
+[2026-06-09 00:42:25] Entered location 2
+[2026-06-09 00:42:26] Player selected action 2 in location 2
+[2026-06-09 00:42:26] Transition to location 3
+[2026-06-09 00:42:26] Entered location 3
+[2026-06-09 00:42:27] Player selected action 2 in location 3
+[2026-06-09 00:42:27] Transition to location 4
+[2026-06-09 00:42:27] Entered location 4
+[2026-06-09 00:42:31] Player selected action 7 in location 4
+[2026-06-09 00:42:31] Player exited game
+--- Log closed ---
+--- Log started: 2026-06-09 00:42:37 ---
+[2026-06-09 00:42:37] Entered location 1
+--- Log started: 2026-06-09 00:42:54 ---
+[2026-06-09 00:42:54] Entered location 1
+[2026-06-09 00:43:01] Player selected action 2 in location 1
+[2026-06-09 00:43:04] Entered location 1
+[2026-06-09 00:43:12] Player selected action 1 in location 1
+[2026-06-09 00:43:12] Transition to location 2
+[2026-06-09 00:43:12] Entered location 2
+[2026-06-09 00:43:16] Door unlocked via puzzle at (0,5) -> target 3
+[2026-06-09 00:43:16] Player selected action 2 in location 2
+[2026-06-09 00:43:16] Transition to location 3
+[2026-06-09 00:43:16] Entered location 3
+[2026-06-09 00:43:17] Player selected action 2 in location 3
+[2026-06-09 00:43:17] Transition to location 4
+[2026-06-09 00:43:17] Entered location 4
+[2026-06-09 00:43:18] Player selected action 2 in location 4
+[2026-06-09 00:43:18] Transition to location 5
+[2026-06-09 00:43:18] Entered location 5
+[2026-06-09 00:43:27] Player selected action 2 in location 5
+[2026-06-09 00:43:28] Entered location 5
+--- Log started: 2026-06-09 00:46:19 ---
+[2026-06-09 00:46:19] Entered location 1
+[2026-06-09 00:46:22] Player selected action 1 in location 1
+[2026-06-09 00:46:22] Transition to location 2
+[2026-06-09 00:46:23] Entered location 2
+[2026-06-09 00:46:25] Player selected action 1 in location 2
+[2026-06-09 00:46:25] Transition to location 1
+[2026-06-09 00:46:25] Entered location 1
+[2026-06-09 00:46:26] Player selected action 11 in location 1
+[2026-06-09 00:46:26] Entered location 1
+[2026-06-09 00:46:27] Player selected action 1 in location 1
+[2026-06-09 00:46:27] Transition to location 2
+[2026-06-09 00:46:27] Entered location 2
+[2026-06-09 00:46:32] Player selected action 8 in location 2
+[2026-06-09 00:46:34] Entered location 2
+--- Log started: 2026-06-09 00:46:39 ---
+[2026-06-09 00:46:39] Entered location 2
+[2026-06-09 00:46:42] Player selected action 1 in location 2
+[2026-06-09 00:46:42] Transition to location 1
+[2026-06-09 00:46:42] Entered location 1
+[2026-06-09 00:46:42] Player selected action 1 in location 1
+[2026-06-09 00:46:42] Transition to location 2
+[2026-06-09 00:46:43] Entered location 2
+[2026-06-09 00:46:47] Door unlocked via puzzle at (19,5) -> target 3
+[2026-06-09 00:46:47] Player selected action 2 in location 2
+[2026-06-09 00:46:47] Transition to location 3
+[2026-06-09 00:46:47] Entered location 3
+[2026-06-09 00:46:54] Player selected action 7 in location 3
+[2026-06-09 00:46:57] Entered location 3
+--- Log started: 2026-06-09 00:47:01 ---
+[2026-06-09 00:47:01] Entered location 3
+[2026-06-09 00:47:17] Player selected action 8 in location 3
+[2026-06-09 00:47:17] Player exited game
+--- Log closed ---
+--- Log started: 2026-06-09 00:47:21 ---
+[2026-06-09 00:47:21] Entered location 3
+--- Log started: 2026-06-09 00:47:26 ---
+[2026-06-09 00:47:26] Entered location 3
+--- Log started: 2026-06-09 01:02:19 ---
+[2026-06-09 01:02:19] Entered location 1
+[2026-06-09 01:02:24] Dialog started with NPC: Hermit
+[2026-06-09 01:02:31] Dialog finished with NPC: Hermit
+[2026-06-09 01:02:31] Player selected action 5 in location 1
+[2026-06-09 01:02:31] Entered location 1
+--- Log started: 2026-06-09 01:18:26 ---
+[2026-06-09 01:18:26] Entered location 1
+[2026-06-09 01:18:31] Dialog started with NPC: Hermit
+[2026-06-09 01:18:36] Dialog finished with NPC: Hermit
+[2026-06-09 01:18:36] Player selected action 5 in location 1
+[2026-06-09 01:18:37] Entered location 1
+[2026-06-09 01:18:39] Dialog started with NPC: Hermit
+[2026-06-09 01:18:44] Dialog finished with NPC: Hermit
+[2026-06-09 01:18:44] Player selected action 5 in location 1
+[2026-06-09 01:18:45] Entered location 1
+[2026-06-09 01:18:47] Dialog started with NPC: Hermit
+[2026-06-09 01:18:49] NPC turned hostile: Hermit
+[2026-06-09 01:18:49] Dialog finished with NPC: Hermit
+[2026-06-09 01:18:59] Player selected action 5 in location 1
+[2026-06-09 01:19:00] Entered location 1
+[2026-06-09 01:19:02] Player selected action 1 in location 1
+[2026-06-09 01:19:02] Transition to location 2
+[2026-06-09 01:19:02] Entered location 2
+[2026-06-09 01:19:06] Door unlocked via puzzle at (10,9) -> target 3
+[2026-06-09 01:19:06] Player selected action 2 in location 2
+[2026-06-09 01:19:06] Transition to location 3
+[2026-06-09 01:19:07] Entered location 3
+[2026-06-09 01:19:14] Player selected action 4 in location 3
+[2026-06-09 01:19:18] Entered location 3
+[2026-06-09 01:19:22] Riddle presented: What can you catch but not throw?
+[2026-06-09 01:19:28] Riddle answered incorrectly: input=     question=What can you catch but not throw?
+[2026-06-09 01:19:28] Failed to open door at (0,5) -> target 4
+[2026-06-09 01:19:28] Player selected action 2 in location 3
+[2026-06-09 01:19:29] Entered location 3
+[2026-06-09 01:19:32] Riddle presented: What always runs but never arrives?
+[2026-06-09 01:19:39] Riddle answered correctly: input=tomorrow question=What always runs but never arrives?
+[2026-06-09 01:19:39] Door unlocked via puzzle at (0,5) -> target 4
+[2026-06-09 01:19:39] Player selected action 2 in location 3
+[2026-06-09 01:19:39] Transition to location 4
+[2026-06-09 01:19:40] Entered location 4
+[2026-06-09 01:19:43] Player selected action 5 in location 4
+[2026-06-09 01:19:45] Entered location 4
+[2026-06-09 01:19:50] Lockpick puzzle started
+[2026-06-09 01:19:52] Lockpick input: 1
+[2026-06-09 01:19:52] Lockpick input: 2
+[2026-06-09 01:19:53] Lockpick input: 5
+[2026-06-09 01:19:53] Door unlocked via puzzle at (10,0) -> target 5
+[2026-06-09 01:19:53] Player selected action 2 in location 4
+[2026-06-09 01:19:53] Transition to location 5
+[2026-06-09 01:19:55] Entered location 5
+[2026-06-09 01:20:04] Player selected action 1 in location 5
+[2026-06-09 01:20:04] Transition to location 4
+[2026-06-09 01:20:05] Entered location 4
+[2026-06-09 01:20:07] Player selected action 2 in location 4
+[2026-06-09 01:20:07] Transition to location 5
+[2026-06-09 01:20:08] Entered location 5
+[2026-06-09 01:20:18] Player selected action 2 in location 5
+--- Log closed ---
+--- Log started: 2026-06-09 01:49:30 ---
+[2026-06-09 01:49:30] Entered location 1
+[2026-06-09 01:49:32] Riddle presented: What belongs to you but others use it more than you?
+[2026-06-09 01:49:42] Riddle answered correctly: input=name question=What belongs to you but others use it more than you?
+[2026-06-09 01:49:42] Player selected action 4 in location 1
+--- Log started: 2026-06-09 01:50:13 ---
+[2026-06-09 01:50:13] Entered location 1
+[2026-06-09 01:50:17] Riddle presented: What always runs but never arrives?
+[2026-06-09 01:50:23] Riddle answered incorrectly: input=tommorow question=What always runs but never arrives?
+[2026-06-09 01:50:23] Player selected action 4 in location 1
+[2026-06-09 01:50:25] Entered location 1

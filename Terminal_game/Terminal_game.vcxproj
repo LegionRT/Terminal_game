@@ -123,7 +123,48 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="chest.cpp" />
+    <ClCompile Include="combat_system.cpp" />
+    <ClCompile Include="door.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="item.cpp" />
+    <ClCompile Include="inventory.cpp" />
+    <ClCompile Include="location.cpp" />
+    <ClCompile Include="location_factory.cpp" />
+    <ClCompile Include="lockpick_puzzle.cpp" />
+    <ClCompile Include="logger.cpp" />
+    <ClCompile Include="dialog.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="npc.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="math_puzzle.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="puzzle.cpp" />
+    <ClCompile Include="riddle_puzzle.cpp" />
+    <ClCompile Include="save_manager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="chest.h" />
+    <ClInclude Include="combat_system.h" />
+    <ClInclude Include="dialog.h" />
+    <ClInclude Include="door.h" />
+    <ClInclude Include="npc.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="entity.h" />
+    <ClInclude Include="inventory.h" />
+    <ClInclude Include="item.h" />
+    <ClInclude Include="location.h" />
+    <ClInclude Include="location_factory.h" />
+    <ClInclude Include="lockpick_puzzle.h" />
+    <ClInclude Include="logger.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="math_puzzle.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="potion.h" />
+    <ClInclude Include="puzzle.h" />
+    <ClInclude Include="riddle_puzzle.h" />
+    <ClInclude Include="save_manager.h" />
+    <ClInclude Include="weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
