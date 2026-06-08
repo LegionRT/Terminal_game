@@ -13,8 +13,8 @@ public:
 	Puzzle(std::string puzzleName);
 	virtual ~Puzzle() = default;
 
-	virtual void start() = 0;		// запуск головоломки
-	virtual bool solve() = 0;		// решение
+	virtual void start() = 0;
+	virtual bool solve() = 0;
 	virtual bool play() = 0;
 
 	std::string getName() const;

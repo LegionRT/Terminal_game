@@ -5,8 +5,8 @@
 class LockpickPuzzle : public Puzzle
 {
 private:
-	std::vector<int> pins;     // правильные штифты
-	std::vector<bool> state;    // поднятые или нет
+	std::vector<int> pins;
+	std::vector<bool> state;
 
 public:
 	LockpickPuzzle();

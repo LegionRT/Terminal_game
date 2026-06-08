@@ -17,7 +17,7 @@ MathPuzzle::MathPuzzle()
 
 void MathPuzzle::start()
 {
-	std::cout << "Сколько будет " << a << " + " << b << "?\n";
+	std::cout << "What is " << a << " + " << b << "?\n";
 }
 
 bool MathPuzzle::solve()

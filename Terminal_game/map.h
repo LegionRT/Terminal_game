@@ -1,8 +1,11 @@
 #pragma once
-#pragma once
 
 #include <vector>
+#include <memory>
 #include "door.h"
+#include "enemy.h"
+#include "chest.h"
+#include "npc.h"
 #include <string>
 
 enum class TileType
@@ -12,6 +15,27 @@ enum class TileType
 	Door,
 	LockedDoor
 };
+
+struct MapEnemySpawn {
+	int x = 0;
+	int y = 0;
+	std::unique_ptr<Enemy> enemy;
+	bool alive = true;
+};
+
+struct MapChestSpawn {
+	int x = 0;
+	int y = 0;
+	Chest chest;
+};
+
+struct MapNpcSpawn {
+	int x = 0;
+	int y = 0;
+	std::unique_ptr<Npc> npc;
+	bool active = true;
+};
+
 class Map
 {
 private:
@@ -22,6 +46,11 @@ private:
 
 	TileType tiles[HEIGHT][WIDTH];
 	std::vector<Door> doors;
+	std::vector<MapEnemySpawn> enemies;
+	std::vector<MapChestSpawn> chests;
+	std::vector<MapNpcSpawn> npcs;
+
+	void spawnEntities();
 
 public:
 	Map(int id);
@@ -32,13 +61,17 @@ public:
 	void generate();
 	void draw() const;
 
-	// Получить список дверей (можно менять состояние дверей через возвращаемый reference)
 	std::vector<Door>& getDoors();
+	std::vector<MapEnemySpawn>& getEnemies() { return enemies; }
+	const std::vector<MapEnemySpawn>& getEnemies() const { return enemies; }
+	std::vector<MapChestSpawn>& getChests() { return chests; }
+	const std::vector<MapChestSpawn>& getChests() const { return chests; }
+	std::vector<MapNpcSpawn>& getNpcs() { return npcs; }
+	const std::vector<MapNpcSpawn>& getNpcs() const { return npcs; }
 
 	TileType getTile(int x, int y) const;
 	void setTile(int x, int y, TileType type);
 
-	// Добавляет или обновляет дверь в указанных координатах
 	void addOrUpdateDoorAt(int x, int y, int targetId, bool isLocked, int puzzleNum);
 
 	static int getWidth() { return WIDTH; }

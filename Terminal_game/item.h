@@ -5,9 +5,10 @@ class Item {
     protected:
     int id;
     std::string name;
+    static int next_id;
 
     public:
-    Item(int item_id, const std::string& item_name) : id(item_id), name(item_name) {}
+    explicit Item(const std::string& item_name);
     virtual ~Item() = default;
     int get_id() const { return id; }
     const std::string& get_name() const { return name; }

@@ -5,34 +5,32 @@
 #include <ctime>
 #include <algorithm>
 #include <cctype>
-#include <locale>
 #include "logger.h"
 
 RiddlePuzzle::RiddlePuzzle()
 	: Puzzle("Riddle")
 {
-    std::srand((unsigned)time(nullptr));
+	std::srand((unsigned)time(nullptr));
 
-	// Единый набор вопросов — должен совпадать с тем, что используется в solve()
 	std::vector<std::string> questions =
 	{
-		"Что всегда идёт, но никогда не приходит?",
-		"Сколько месяцев в году имеют 28 дней?",
-		"Что можно поймать, но нельзя бросить?",
-		"Что принадлежит вам, но другие используют его чаще, чем вы?",
-		"Что растёт вниз, а не вверх?"
+		"What always runs but never arrives?",
+		"How many months in a year have 28 days?",
+		"What can you catch but not throw?",
+		"What belongs to you but others use it more than you?",
+		"What grows down instead of up?"
 	};
 
 	int index = rand() % static_cast<int>(questions.size());
 	question = questions[index];
-	// Сохраняем эталонный ответ (первый вариант) для совместимости
+
 	std::vector<std::vector<std::string>> poolAnswers =
 	{
-		{"завтра", "tomorrow"},
-		{"12", "двенадцать", "twelve"},
-		{"простуда", "cold"},
-		{"имя", "name"},
-		{"борода", "beard"}
+		{"tomorrow"},
+		{"12", "twelve"},
+		{"cold"},
+		{"name"},
+		{"beard"}
 	};
 	if (index >= 0 && index < static_cast<int>(poolAnswers.size()))
 		answer = poolAnswers[index][0];
@@ -40,7 +38,7 @@ RiddlePuzzle::RiddlePuzzle()
 
 void RiddlePuzzle::start()
 {
-	std::cout << "ЗАГАДКА\n\n";
+	std::cout << "RIDDLE\n\n";
 	std::cout << question << "\n\n";
 
 	Logger::instance().log(std::string("Riddle presented: ") + question);
@@ -48,35 +46,30 @@ void RiddlePuzzle::start()
 
 bool RiddlePuzzle::solve()
 {
-    std::string input;
+	std::string input;
 	std::cin >> input;
 
-    // Нормализуем ввод с учётом локали (чтобы работать и с кириллицей)
-	std::locale loc("");
 	std::string lower;
 	lower.reserve(input.size());
 	for (unsigned char c : input)
-		lower.push_back(std::tolower(static_cast<char>(c), loc));
+		lower.push_back(static_cast<char>(std::tolower(c)));
 
-	// Подготовим ту же таблицу ответов, что был создан в конструкторе.
-	// Дублируем список тут (не идеал), чтобы маппинг вопросов->ответов был простым.
 	std::vector<std::vector<std::string>> poolAnswers =
 	{
-		{"завтра", "tomorrow"},
-		{"12", "двенадцать", "twelve"},
-		{"простуда", "cold"},
-		{"имя", "name"},
-		{"борода", "beard"}
+		{"tomorrow"},
+		{"12", "twelve"},
+		{"cold"},
+		{"name"},
+		{"beard"}
 	};
 
-	// Определим индекс текущего вопроса по полю question
 	std::vector<std::string> questions =
 	{
-		"Что всегда идёт, но никогда не приходит?",
-		"Сколько месяцев в году имеют 28 дней?",
-		"Что можно поймать, но нельзя бросить?",
-		"Что принадлежит вам, но другие используют его чаще, чем вы?",
-		"Что растёт вниз, а не вверх?"
+		"What always runs but never arrives?",
+		"How many months in a year have 28 days?",
+		"What can you catch but not throw?",
+		"What belongs to you but others use it more than you?",
+		"What grows down instead of up?"
 	};
 
 	int qidx = -1;
@@ -89,20 +82,19 @@ bool RiddlePuzzle::solve()
 		}
 	}
 
-    if (qidx == -1)
+	if (qidx == -1)
 	{
 		Logger::instance().log(std::string("Riddle question not recognized: ") + question);
 		return false;
 	}
 
-	for (auto &opt : poolAnswers[qidx])
+	for (auto& opt : poolAnswers[qidx])
 	{
-        std::string o = opt;
 		std::string ol;
-		ol.reserve(o.size());
-		for (unsigned char c : o)
-			ol.push_back(std::tolower(static_cast<char>(c), loc));
-        if (lower == ol)
+		ol.reserve(opt.size());
+		for (unsigned char c : opt)
+			ol.push_back(static_cast<char>(std::tolower(c)));
+		if (lower == ol)
 		{
 			Logger::instance().log(std::string("Riddle answered correctly: input=") + input + " question=" + question);
 			return true;

@@ -6,7 +6,6 @@
 
 std::shared_ptr<Location> LocationFactory::get(int id)
 {
-    // Храним shared_ptr в кэше, чтобы локации сохраняли своё состояние
     static std::map<int, std::shared_ptr<Location>> cache;
     static std::mutex mtx;
 

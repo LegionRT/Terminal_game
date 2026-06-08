@@ -20,7 +20,7 @@ void LockpickPuzzle::reset()
 	pins.clear();
 	state.clear();
 
-	int count = rand() % 3 + 3; // 3–5 штифтов
+	int count = rand() % 3 + 3; // 3-5 pins
 
 	std::vector<int> all = { 1, 2, 3, 4, 5 };
 	std::random_shuffle(all.begin(), all.end());
@@ -39,21 +39,21 @@ void LockpickPuzzle::render()
 #endif
 
 	std::cout << "=== LOCKPICK PUZZLE ===\n\n";
-	std::cout << "Штифты (номера 1-5):\n\n";
+	std::cout << "Pins (numbers 1-5):\n\n";
 
 	for (size_t i = 0; i < pins.size(); i++)
 	{
 		std::cout << " [" << pins[i] << "] ";
 
 		if (state[i])
-			std::cout << "✔";
+			std::cout << "[OK]";
 		else
-			std::cout << "✖";
+			std::cout << "[ ]";
 
 		std::cout << "\n";
 	}
 
-	std::cout << "\nВведите номер штифта: ";
+	std::cout << "\nEnter pin number: ";
 }
 
 void LockpickPuzzle::start()
@@ -88,7 +88,7 @@ bool LockpickPuzzle::solve()
 
 		if (!found)
 		{
-			std::cout << "\n✖ Неверно! Замок сброшен...\n";
+			std::cout << "\nWrong pin! Lock reset...\n";
 
 			Logger::instance().log("Lockpick failed, resetting");
 

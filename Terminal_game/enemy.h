@@ -1,16 +1,24 @@
 #pragma once
-#include "inventory.h" 
+#include "entity.h"
+#include "inventory.h"
+#include <string>
 
 class Enemy : public Entity {
-    private:
-    Inventory loot_inventory;
-    const char* description;
+private:
+    std::string description;
+    Inventory inventory;
+    bool boss = false;
 
-    public:
-    Enemy(const char* n, int hp, int dmg, const char* desc);
+public:
+    Enemy(const std::string& n, int hp, int dmg, const std::string& desc = "", bool isBoss = false)
+        : Entity(n, hp, dmg), description(desc), boss(isBoss) {}
 
-    Inventory& get_loot_inventory() { return loot_inventory; }
+    Enemy(const Enemy&) = delete;
+    Enemy& operator=(const Enemy&) = delete;
+    Enemy(Enemy&&) = default;
+    Enemy& operator=(Enemy&&) = default;
+    bool isBoss() const { return boss; }
 
-    bool getDamage();
-    void drop_loot(Inventory& player_inventory);
+    void drop_loot(Inventory& inv);
+    const std::string& get_description() const { return description; }
 };

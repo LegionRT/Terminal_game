@@ -1,22 +1,16 @@
-#pragma once 
-
-class Player;
-class Enemy;
+#pragma once
+#include "player.h"
+#include "entity.h"
 
 class CombatSystem {
-    public:
-    CombatSystem(Player& player, Enemy& enemy);
+private:
+	Player& player;
+	Entity& opponent;
 
-    void startBattle();
-    void playerTurn();
-    void enemyTurn();
-    void endBattle();
+	void playerTurn();
+	void enemyTurn();
 
-    private:
-    Player& player;
-    Enemy& enemy;
-    bool isPlayerTurn = true;
-
-    void attack(int attackerDamage, int& defenderHealth, const char* attackerName, const char* defenderName);
-    int calculateDamade(int attack, int defense);
+public:
+	CombatSystem(Player& p, Entity& opponent) : player(p), opponent(opponent) {}
+	bool startBattle();
 };

@@ -10,6 +10,7 @@
 #include "riddle_puzzle.h"
 #include "lockpick_puzzle.h"
 #include "logger.h"
+#include "player.h"
 
 Door::Door(int xPos, int yPos, int targetId, bool isLocked, int puzzleNum)
 	: x(xPos),
@@ -55,12 +56,11 @@ void Door::setPuzzleNumber(int num)
 	puzzleNumber = num;
 }
 
-bool Door::interact()
+bool Door::interact(Player& player)
 {
 	if (!locked)
 		return true;
 
-	// Создаём нужный пазл на основе номера пазла и делегируем логику
 	std::unique_ptr<Puzzle> puzzle;
 	switch (puzzleNumber)
 	{
@@ -74,20 +74,21 @@ bool Door::interact()
 		puzzle = std::make_unique<LockpickPuzzle>();
 		break;
 	default:
-		// Нет пазла — нельзя открыть
-		std::cout << "Эта дверь заблокирована и не имеет пазла.\n";
+		std::cout << "This door is locked and has no puzzle.\n";
 		return false;
 	}
 
 	if (puzzle->play())
 	{
-       Logger::instance().log(std::string("Door unlocked via puzzle at (") + std::to_string(x) + "," + std::to_string(y) + ") -> target " + std::to_string(targetLocationId));
+		Logger::instance().log(std::string("Door unlocked via puzzle at (") + std::to_string(x) + "," + std::to_string(y) + ") -> target " + std::to_string(targetLocationId));
 		unlock();
-		std::cout << "Дверь открыта!\n";
+		std::cout << "Door unlocked!\n";
 		return true;
 	}
 
 	Logger::instance().log(std::string("Failed to open door at (") + std::to_string(x) + "," + std::to_string(y) + ") -> target " + std::to_string(targetLocationId));
-	std::cout << "Неправильный ответ. Дверь остаётся закрытой.\n";
+	const int puzzleDamage = 5;
+	player.take_damage(puzzleDamage);
+	std::cout << "Wrong answer. The door stays locked. You take " << puzzleDamage << " damage.\n";
 	return false;
 }

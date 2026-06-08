@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 class Door
 {
 private:
@@ -21,7 +19,5 @@ public:
 	int getTargetLocationId() const;
 	int getPuzzleNumber() const;
 	void setPuzzleNumber(int num);
-    // ¬ыполн€ет взаимодействие с дверью: если закрыта Ч задаЄт пазл через ввод и
-	// при успешном ответе разблокирует дверь. ¬озвращает true, если дверь теперь открыта.
-	bool interact();
+	bool interact(class Player& player);
 };
