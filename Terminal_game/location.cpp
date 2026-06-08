@@ -1,8 +1,6 @@
 #include "location.h"
 #include "location.h"
 #include <iostream>
-#include <algorithm>
-#include <cctype>
 #include "location_factory.h"
 #include "logger.h"
 
