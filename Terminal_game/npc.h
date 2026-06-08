@@ -7,28 +7,28 @@ class Player;
 class Location;
 
 enum class NpcDisposition {
-    Friendly,
-    Hostile
+	Friendly,
+	Hostile
 };
 
 class Npc : public Entity {
 private:
-    int npcId;
-    NpcDisposition disposition;
-    DialogTree dialog;
-    bool dialogUsed = false;
+	int npcId;
+	NpcDisposition disposition;
+	DialogTree dialog;
 
-    void applyOutcome(const DialogOutcome& outcome, Player& player, Location& location);
+	void applyOutcome(const DialogOutcome& outcome, Player& player, Location& location);
 
 public:
-    Npc(int id, const std::string& name, int hp, int dmg,
-        NpcDisposition disp, DialogTree tree);
+	Npc(int id, const std::string& name, int hp, int dmg,
+		NpcDisposition disp, DialogTree tree);
 
-    int getNpcId() const { return npcId; }
-    bool is_hostile() const { return disposition == NpcDisposition::Hostile; }
-    bool is_friendly() const { return disposition == NpcDisposition::Friendly; }
-    bool has_dialog_left() const { return !dialogUsed && is_friendly(); }
+	int getNpcId() const { return npcId; }
+	bool is_hostile() const { return disposition == NpcDisposition::Hostile; }
+	bool is_friendly() const { return disposition == NpcDisposition::Friendly; }
 
-    void turn_hostile();
-    void interact(Player& player, Location& location);
+		bool has_dialog_left() const { return is_friendly(); }
+
+	void turn_hostile();
+	void interact(Player& player, Location& location);
 };

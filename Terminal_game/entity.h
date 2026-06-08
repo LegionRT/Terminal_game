@@ -8,12 +8,11 @@ private:
     std::string name;
 
 public:
-    Entity(const std::string& n, int hp, int dmg) : name(n), health(hp), damage(dmg) {}
+    Entity(const std::string& n, int hp, int dmg) : health(hp), damage(dmg), name(n) {}
     int getHealth() const { return health; }
     int& getHealthRef() { return health; }
     int getDamage() const { return damage; }
-    // Backwards-compatible alias
-    int detDamage() const { return getDamage(); }
+        int detDamage() const { return getDamage(); }
     const std::string& getName() const { return name; }
 
     void take_damage(int amount) { health -= amount; if (health < 0) health = 0; }

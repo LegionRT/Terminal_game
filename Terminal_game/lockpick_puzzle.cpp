@@ -20,8 +20,7 @@ void LockpickPuzzle::reset()
 	pins.clear();
 	state.clear();
 
-	int count = rand() % 3 + 3; // 3-5 pins
-
+	int count = rand() % 3 + 3; 
 	std::vector<int> all = { 1, 2, 3, 4, 5 };
 	std::random_shuffle(all.begin(), all.end());
 

@@ -7,6 +7,7 @@
 #include "npc.h"
 #include <iostream>
 #include <limits>
+#include "save_manager.h"
 
 Location::Location(int id)
 	: locationId(id),
@@ -106,7 +107,8 @@ std::vector<std::string> Location::getActions(Player& player)
 		if (!spawn.active || !spawn.npc) continue;
 		if (spawn.npc->is_friendly() && spawn.npc->has_dialog_left()) {
 			actions.emplace_back("Talk to " + spawn.npc->getName());
-		} else if (spawn.npc->is_alive()) {
+		}
+		else if (spawn.npc->is_alive()) {
 			actions.emplace_back("Fight " + spawn.npc->getName()
 				+ " (HP: " + std::to_string(spawn.npc->getHealth()) + ")");
 		}
@@ -114,7 +116,7 @@ std::vector<std::string> Location::getActions(Player& player)
 
 	actions.emplace_back("Inventory (HP: " + std::to_string(player.getHealth())
 		+ ", damage: " + std::to_string(player.getDamage()) + ")");
-	actions.emplace_back("Exit game");
+	actions.emplace_back("Save game");       	actions.emplace_back("Exit game");
 	return actions;
 }
 
@@ -191,7 +193,7 @@ int Location::handleInventoryMenu(Player& player)
 	{
 		player.show_stats();
 
-		auto& weapons = player.get_inventory().get_weapons();
+		auto weapons = player.get_inventory().get_weapons();
 
 		std::cout << "\n--- Inventory menu ---\n";
 		std::cout << "1. Equip best weapon\n";
@@ -254,13 +256,13 @@ int Location::handleAction(int choice, Player& player)
 
 	size_t index = 0;
 
-	if (choice >= 1 && choice <= static_cast<int>(doors.size()))
+		if (choice >= 1 && choice <= static_cast<int>(doors.size()))
 	{
 		return handleDoorAction(choice - 1, player);
 	}
 	index += doors.size();
 
-	std::vector<size_t> aliveEnemyIndices;
+		std::vector<size_t> aliveEnemyIndices;
 	for (size_t i = 0; i < enemies.size(); ++i) {
 		if (enemies[i].alive) aliveEnemyIndices.push_back(i);
 	}
@@ -269,12 +271,17 @@ int Location::handleAction(int choice, Player& player)
 		size_t enemyIdx = aliveEnemyIndices[enemySlot];
 		MapEnemySpawn& spawn = enemies[enemyIdx];
 		if (!spawn.enemy) return -1;
+
 		CombatSystem combat(player, *spawn.enemy);
-		bool won = combat.startBattle();
-		if (!player.is_alive()) {
+		BattleResult result = combat.startBattle();
+
+		if (result == BattleResult::Defeat || !player.is_alive()) {
 			return -3;
 		}
-		if (won) {
+		if (result == BattleResult::Escaped) {
+			std::cout << "You escaped from " << spawn.enemy->getName() << "!\n";
+			return -1; 		}
+		if (result == BattleResult::Victory) {
 			spawn.alive = false;
 			spawn.enemy->drop_loot(player.get_inventory());
 			player.equip_best_weapon();
@@ -282,64 +289,101 @@ int Location::handleAction(int choice, Player& player)
 				return -4;
 			}
 		}
+		return -1; 	}
+	index += aliveEnemyIndices.size();
+
+		std::vector<size_t> availableChestIndices;
+	for (size_t i = 0; i < chests.size(); ++i) {
+		if (!chests[i].chest.is_empty()) availableChestIndices.push_back(i);
 	}
-	index += aliveEnemyIndices.size(); 
+	if (choice > static_cast<int>(index) && choice <= static_cast<int>(index + availableChestIndices.size()))
+	{
+		size_t chestSlot = static_cast<size_t>(choice - index - 1);
+		size_t chestIdx = availableChestIndices[chestSlot];
+		chests[chestIdx].chest.interact(player);
+		player.equip_best_weapon();
+		return -1;
+	}
+	index += availableChestIndices.size();
 
-			std::vector<size_t> availableChestIndices;
-			for (size_t i = 0; i < chests.size(); ++i) {
-				if (!chests[i].chest.is_empty()) availableChestIndices.push_back(i);
-			}
-			if (choice > static_cast<int>(index) && choice <= static_cast<int>(index + availableChestIndices.size()))
-			{
-				size_t chestSlot = static_cast<size_t>(choice - index - 1);
-				size_t chestIdx = availableChestIndices[chestSlot];
-				chests[chestIdx].chest.interact(player.get_inventory());
-				player.equip_best_weapon();
-				return -1;
-			}
-			index += availableChestIndices.size();
-
-			std::vector<size_t> activeNpcIndices;
-			for (size_t i = 0; i < npcs.size(); ++i) {
-				if (!npcs[i].active || !npcs[i].npc || !npcs[i].npc->is_alive()) continue;
-				if (npcs[i].npc->is_friendly() && npcs[i].npc->has_dialog_left()) {
-					activeNpcIndices.push_back(i);
-				}
-				else if (npcs[i].npc->is_hostile()) {
-					activeNpcIndices.push_back(i);
-				}
-			}
-			if (choice > static_cast<int>(index) && choice <= static_cast<int>(index + activeNpcIndices.size()))
-			{
-				size_t npcSlot = static_cast<size_t>(choice - index - 1);
-				size_t npcIdx = activeNpcIndices[npcSlot];
-				MapNpcSpawn& spawn = npcs[npcIdx];
-
-				if (!spawn.npc) return -1;
-
-				if (spawn.npc->is_friendly() && spawn.npc->has_dialog_left()) {
-					spawn.npc->interact(player, *this);
-				}
-				else {
-					CombatSystem combat(player, *spawn.npc);
-					bool won = combat.startBattle();
-					if (!player.is_alive()) return -3;
-					if (won) spawn.active = false;
-				}
-				return -1;
-			}
-			index += activeNpcIndices.size();
-
-			if (choice == static_cast<int>(index + 1))
-			{
-				return handleInventoryMenu(player);
-			}
-
-			if (choice == static_cast<int>(index + 2))
-			{
-				return -2;
-			}
-
-			std::cout << "Invalid choice.\n";
-			return -1;
+		std::vector<size_t> activeNpcIndices;
+	for (size_t i = 0; i < npcs.size(); ++i) {
+		if (!npcs[i].active || !npcs[i].npc || !npcs[i].npc->is_alive()) continue;
+		if (npcs[i].npc->is_friendly()) {
+			activeNpcIndices.push_back(i);
 		}
+		else if (npcs[i].npc->is_hostile()) {
+			activeNpcIndices.push_back(i);
+		}
+	}
+
+	if (choice > static_cast<int>(index) && choice <= static_cast<int>(index + activeNpcIndices.size()))
+	{
+		size_t npcSlot = static_cast<size_t>(choice - index - 1);
+		size_t npcIdx = activeNpcIndices[npcSlot];
+		MapNpcSpawn& spawn = npcs[npcIdx];
+
+		if (!spawn.npc) return -1;
+
+		if (spawn.npc->is_friendly()) {
+						spawn.npc->interact(player, *this);
+
+						if (spawn.npc->is_hostile()) {
+				std::cout << "\n";
+				CombatSystem combat(player, *spawn.npc);
+				BattleResult result = combat.startBattle();
+
+				if (result == BattleResult::Defeat || !player.is_alive()) return -3;
+				if (result == BattleResult::Escaped) {
+					std::cout << "You escaped from " << spawn.npc->getName() << "!\n";
+					return -1;
+				}
+				if (result == BattleResult::Victory) {
+					spawn.active = false;
+				}
+			}
+		}
+		else {
+						CombatSystem combat(player, *spawn.npc);
+			BattleResult result = combat.startBattle();
+
+			if (result == BattleResult::Defeat || !player.is_alive()) return -3;
+			if (result == BattleResult::Escaped) {
+				std::cout << "You escaped from " << spawn.npc->getName() << "!\n";
+				return -1;
+			}
+			if (result == BattleResult::Victory) {
+				spawn.active = false;
+			}
+		}
+		return -1;
+	}
+	index += activeNpcIndices.size();
+
+		if (choice == static_cast<int>(index + 1))
+	{
+		return handleInventoryMenu(player);
+	}
+
+		if (choice == static_cast<int>(index + 2))
+	{
+		if (SaveManager::save_game(player)) {
+			std::cout << "\n[SUCCESS] Game saved successfully to savegame.txt!\n";
+		}
+		else {
+			std::cout << "\n[ERROR] Failed to save game.\n";
+		}
+		std::cout << "Press Enter to continue...";
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cin.get();
+		return -1;
+	}
+
+		if (choice == static_cast<int>(index + 3))
+	{
+		return -2;
+	}
+
+	std::cout << "Invalid choice.\n";
+	return -1;
+} 

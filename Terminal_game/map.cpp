@@ -7,6 +7,8 @@
 #include <array>
 #include <vector>
 #include <utility>
+#include <fstream>
+#include <sstream>
 
 int Map::getId() const {
 	return mapId;
@@ -43,20 +45,15 @@ void Map::spawnEntities()
 {
 	const int playerX = WIDTH / 2;
 	const int playerY = HEIGHT / 2;
-
 	std::vector<std::pair<int, int>> freeTiles;
 	for (int y = 1; y < HEIGHT - 1; ++y) {
 		for (int x = 1; x < WIDTH - 1; ++x) {
-			if (tiles[y][x] != TileType::Floor)
-				continue;
-			if (x == playerX && y == playerY)
-				continue;
+			if (tiles[y][x] != TileType::Floor) continue;
+			if (x == playerX && y == playerY) continue;
 			freeTiles.emplace_back(x, y);
 		}
 	}
-
-	if (freeTiles.empty())
-		return;
+	if (freeTiles.empty()) return;
 
 	std::random_device rd;
 	std::mt19937 g(rd());
@@ -64,30 +61,20 @@ void Map::spawnEntities()
 
 	static const char* enemyNames[] = { "Goblin", "Orc", "Skeleton", "Troll" };
 	static const char* enemyBossNames[] = { "Dragon", "Demon", "Lich", "Giant" };
+
 	int enemyCount = 1 + (mapId % 3);
 	enemyCount = std::min(enemyCount, static_cast<int>(freeTiles.size()));
 
 	enemies.clear();
-
 	if (mapId == 5)
 	{
 		std::uniform_int_distribution<int> bossDist(0, 3);
 		int bossIndex = bossDist(g);
-
 		std::string bossName = enemyBossNames[bossIndex];
-
 		MapEnemySpawn boss;
 		boss.x = freeTiles[0].first;
 		boss.y = freeTiles[0].second;
-
-		boss.enemy = std::make_unique<Enemy>(
-			bossName,
-			1,
-			25,
-			"The final boss",
-			true
-		);
-
+		boss.enemy = std::make_unique<Enemy>(bossName, 1, 25, "The final boss", true);
 		boss.alive = true;
 		enemies.push_back(std::move(boss));
 	}
@@ -97,44 +84,41 @@ void Map::spawnEntities()
 		{
 			int x = freeTiles[i].first;
 			int y = freeTiles[i].second;
-
 			int hp = 10 + mapId * 5 + i * 3;
 			int dmg = 2 + mapId + i;
-
-			std::string name =
-				std::string(enemyNames[i % 4]) +
-				" #" +
-				std::to_string(i + 1);
-
+			std::string name = std::string(enemyNames[i % 4]) + " #" + std::to_string(i + 1);
 			MapEnemySpawn spawn;
 			spawn.x = x;
 			spawn.y = y;
-			spawn.enemy = std::make_unique<Enemy>(name,hp,dmg,"A hostile creature");
+			spawn.enemy = std::make_unique<Enemy>(name, hp, dmg, "A hostile creature");
 			spawn.alive = true;
-
 			enemies.push_back(std::move(spawn));
 		}
 	}
 
 	npcs.clear();
-	size_t tileIdx = static_cast<size_t>(enemyCount);
+		size_t tileIdx = (mapId == 5) ? 1 : static_cast<size_t>(enemyCount);
 
 	if (tileIdx < freeTiles.size()) {
 		MapChestSpawn chestSpawn;
 		chestSpawn.x = freeTiles[tileIdx].first;
 		chestSpawn.y = freeTiles[tileIdx].second;
 		chestSpawn.chest.generate_loot(mapId);
+
+				if (rand() % 10 < 4) {
+			chestSpawn.chest.set_locked(mapId % 3 + 1);
+		}
+
 		chests.push_back(std::move(chestSpawn));
 		tileIdx++;
 	}
 
 	std::unique_ptr<Npc> npc;
 	if (mapId == 1) {
-		npc = std::make_unique<Npc>(1, "Hermit", 40, 4, NpcDisposition::Friendly,
-			DialogTree::createHermitDialog());
-	} else if (mapId == 3) {
-		npc = std::make_unique<Npc>(2, "Merchant", 35, 5, NpcDisposition::Friendly,
-			DialogTree::createMerchantDialog());
+		npc = std::make_unique<Npc>(1, "Hermit", 40, 4, NpcDisposition::Friendly, DialogTree::createHermitDialog());
+	}
+	else if (mapId == 3) {
+		npc = std::make_unique<Npc>(2, "Merchant", 35, 5, NpcDisposition::Friendly, DialogTree::createMerchantDialog());
 	}
 
 	if (npc && tileIdx < freeTiles.size()) {
@@ -273,15 +257,6 @@ void Map::draw() const
 			}
 			if (drawn) continue;
 
-			for (const auto& spawn : chests) {
-				if (spawn.x == x && spawn.y == y && !spawn.chest.is_empty()) {
-					std::cout << (spawn.chest.is_opened() ? "c" : "C");
-					drawn = true;
-					break;
-				}
-			}
-			if (drawn) continue;
-
 			switch (tiles[y][x])
 			{
 			case TileType::Floor:
@@ -300,5 +275,97 @@ void Map::draw() const
 
 		}
 		std::cout << std::endl;	
+	}
+}
+void Map::save_state(std::ofstream& file) const {
+	file << "MapStateStart\n";
+	file << "DoorsCount:" << doors.size() << "\n";
+	for (const auto& d : doors) {
+		file << "Door:" << d.getX() << " " << d.getY() << " " << (d.isLocked() ? 1 : 0) << "\n";
+	}
+	file << "EnemiesCount:" << enemies.size() << "\n";
+	for (const auto& e : enemies) {
+		file << "Enemy:" << e.x << " " << e.y << " " << (e.alive ? 1 : 0) << "\n";
+	}
+	file << "ChestsCount:" << chests.size() << "\n";
+	for (const auto& c : chests) {
+		file << "Chest:" << c.x << " " << c.y << " " << (c.chest.is_opened() ? 1 : 0) << "\n";
+	}
+}
+
+void Map::load_state(std::ifstream& file) {
+	std::string line;
+	int count = 0;
+
+	if (std::getline(file, line)) {
+		if (!line.empty() && line.back() == '\r') line.pop_back();
+		if (line.find("DoorsCount:") == 0) {
+			count = std::stoi(line.substr(11));
+			for (int i = 0; i < count; ++i) {
+				std::getline(file, line);
+				if (!line.empty() && line.back() == '\r') line.pop_back();
+				if (line.find("Door:") == 0) {
+					std::istringstream iss(line.substr(5));
+					int x, y, locked;
+					if (iss >> x >> y >> locked) {
+						for (auto& d : doors) {
+							if (d.getX() == x && d.getY() == y) {
+								if (!locked) d.unlock();
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if (std::getline(file, line)) {
+		if (!line.empty() && line.back() == '\r') line.pop_back();
+		if (line.find("EnemiesCount:") == 0) {
+			count = std::stoi(line.substr(13));
+			for (int i = 0; i < count; ++i) {
+				std::getline(file, line);
+				if (!line.empty() && line.back() == '\r') line.pop_back();
+				if (line.find("Enemy:") == 0) {
+					std::istringstream iss(line.substr(6));
+					int x, y, alive;
+					if (iss >> x >> y >> alive) {
+						for (auto& e : enemies) {
+							if (e.x == x && e.y == y) {
+								e.alive = (alive != 0);
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if (std::getline(file, line)) {
+		if (!line.empty() && line.back() == '\r') line.pop_back();
+		if (line.find("ChestsCount:") == 0) {
+			count = std::stoi(line.substr(12));
+			for (int i = 0; i < count; ++i) {
+				std::getline(file, line);
+				if (!line.empty() && line.back() == '\r') line.pop_back();
+				if (line.find("Chest:") == 0) {
+					std::istringstream iss(line.substr(6));
+					int x, y, opened;
+					if (iss >> x >> y >> opened) {
+						for (auto& c : chests) {
+							if (c.x == x && c.y == y) {
+								if (opened) {
+									c.chest.set_opened(true);
+									c.chest.clear_contents();
+								}
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

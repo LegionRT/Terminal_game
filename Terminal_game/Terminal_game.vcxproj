@@ -141,6 +141,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="puzzle.cpp" />
     <ClCompile Include="riddle_puzzle.cpp" />
+    <ClCompile Include="save_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chest.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="potion.h" />
     <ClInclude Include="puzzle.h" />
     <ClInclude Include="riddle_puzzle.h" />
+    <ClInclude Include="save_manager.h" />
     <ClInclude Include="weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

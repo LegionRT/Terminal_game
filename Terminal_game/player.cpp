@@ -12,12 +12,10 @@ Player::Player(std::shared_ptr<Location> startLocation)
 
 bool Player::use_potion()
 {
-	auto& potions = inventory.get_potions();
+		auto potions = inventory.get_potions();
 	if (potions.empty()) return false;
-
 	Potion* p = potions[0];
 	if (!p) return false;
-
 	heal(p->get_heal_amout());
 	std::cout << "You used " << p->get_name()
 		<< " and restored " << p->get_heal_amout() << " HP." << std::endl;
@@ -34,7 +32,8 @@ void Player::show_stats()
 	if (equipped_weapon) {
 		std::cout << "Weapon: " << equipped_weapon->get_name()
 			<< " (+" << equipped_weapon->get_damage_bonus() << ")" << std::endl;
-	} else {
+	}
+	else {
 		std::cout << "Weapon: none" << std::endl;
 	}
 	inventory.show_items();
@@ -51,9 +50,8 @@ int Player::getDamage() const
 
 void Player::equip_best_weapon()
 {
-	auto& weapons = inventory.get_weapons();
+		auto weapons = inventory.get_weapons();
 	if (weapons.empty()) return;
-
 	Weapon* best = weapons[0];
 	for (Weapon* w : weapons) {
 		if (w->get_damage_bonus() > best->get_damage_bonus()) {
@@ -67,7 +65,7 @@ void Player::equip_best_weapon()
 
 bool Player::equip_weapon_by_index(int index)
 {
-	auto& weapons = inventory.get_weapons();
+		auto weapons = inventory.get_weapons();
 	if (index < 1 || index > static_cast<int>(weapons.size())) {
 		return false;
 	}
@@ -80,25 +78,19 @@ bool Player::equip_weapon_by_index(int index)
 void Player::play()
 {
 	bool isRunning = true;
-
 	while (isRunning)
 	{
 #ifdef _WIN32
 		system("cls");
 #endif
-
 		currentLocation->init();
-
 		auto actions = currentLocation->getActions(*this);
-
 		std::cout << "\n--- Available actions ---\n";
 		for (size_t i = 0; i < actions.size(); ++i)
 		{
 			std::cout << (i + 1) << ". " << actions[i] << "\n";
 		}
-
 		std::cout << "Your choice: ";
-
 		int choice;
 		if (!(std::cin >> choice))
 		{
@@ -111,15 +103,12 @@ void Player::play()
 			continue;
 		}
 
-		// ✔ ВОТ ТУТ ПОЛУЧАЕМ РЕЗУЛЬТАТ
 		int nextLocationId = currentLocation->handleAction(choice, *this);
-
 		Logger::instance().log(
 			std::string("Player selected action ") + std::to_string(choice)
 			+ " in location " + std::to_string(currentLocation->getId())
 		);
 
-		// 💀 DEATH
 		if (nextLocationId == -3)
 		{
 			std::cout << "Game over.\n";
@@ -127,8 +116,6 @@ void Player::play()
 			isRunning = false;
 			break;
 		}
-
-		// 🚪 EXIT
 		else if (nextLocationId == -2)
 		{
 			std::cout << "Thanks for playing!\n";
@@ -136,14 +123,11 @@ void Player::play()
 			isRunning = false;
 			break;
 		}
-
-		// 🏆 VICTORY
 		else if (nextLocationId == -4)
 		{
 #ifdef _WIN32
 			system("cls");
 #endif
-
 			std::cout << R"(
 
 =========================================
@@ -159,23 +143,17 @@ void Player::play()
 =========================================
 
 )";
-
 			std::cout << "\nYou completed the game!\n";
-
 			isRunning = false;
 			break;
 		}
-
-		// 🚶 MOVE
 		else if (nextLocationId >= 0)
 		{
 			std::cout << "\nMoving to location " << nextLocationId << "...\n";
 			Logger::instance().log("Transition to location " + std::to_string(nextLocationId));
-
 #ifdef _WIN32
 			system("pause");
 #endif
-
 			currentLocation = LocationFactory::get(nextLocationId);
 		}
 		else
