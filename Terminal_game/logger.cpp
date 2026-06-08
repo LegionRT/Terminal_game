@@ -16,8 +16,11 @@ Logger::Logger()
 	{
 		auto now = std::chrono::system_clock::now();
 		std::time_t t = std::chrono::system_clock::to_time_t(now);
-		std::tm timeinfo = *std::localtime(&t); // Стандартный C++, работает везде
-		ofs << "--- Log started: " << std::put_time(&timeinfo, "%F %T") << " ---\n";
+		std::tm* timeinfo_ptr = std::localtime(&t);
+		if (timeinfo_ptr)
+		{
+			ofs << "--- Log started: " << std::put_time(timeinfo_ptr, "%F %T") << " ---\n";
+		}
 	}
 }
 
@@ -32,12 +35,14 @@ Logger::~Logger()
 
 void Logger::log(const std::string& msg)
 {
-	if (!ofs) return;
-
+	if (!ofs)
+		return;
 	auto now = std::chrono::system_clock::now();
 	std::time_t t = std::chrono::system_clock::to_time_t(now);
-	std::tm timeinfo = *std::localtime(&t); // Стандартный C++, работает везде
-
-	ofs << "[" << std::put_time(&timeinfo, "%F %T") << "] " << msg << "\n";
+	std::tm* timeinfo_ptr = std::localtime(&t);
+	if (timeinfo_ptr)
+	{
+		ofs << "[" << std::put_time(timeinfo_ptr, "%F %T") << "] " << msg << "\n";
+	}
 	ofs.flush();
 }

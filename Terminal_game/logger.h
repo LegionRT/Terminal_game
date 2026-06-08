@@ -13,4 +13,4 @@ private:
 	Logger(const Logger&) = delete;
 	Logger& operator=(const Logger&) = delete;
 	std::ofstream ofs;
-	};
+};
