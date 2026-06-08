@@ -1,30 +1,29 @@
 ﻿# Terminal Game: Labyrinth Escape
 
-Текстовая RPG-игра в терминале, где вам предстоит пройти через 5 локаций лабиринта, сражаться с монстрами, решать головоломки и победить финального босса.
+A text-based terminal RPG where you must navigate through 5 labyrinth locations, battle monsters, solve puzzles, and defeat the final boss.
 
-## 🎮 Основные возможности
-- **5 уникальных локаций** с процедурной генерацией врагов и предметов.
-- **Боевая система**: атака, использование зелий, просмотр статов и **побег** (50% шанс).
-- **Система сохранений**: полная запись прогресса (HP, инвентарь, состояние локации, убитые враги, открытые двери и сундуки).
-- **NPC и диалоги**: общение с торговцами и отшельниками. Можно получить предмет, открыть дверь или **сразу перейти к бою** из меню диалога.
-- **Запертые сундуки и двери**: для открытия нужно решить математическую задачу, отгадать загадку или взломать замок. Ошибка наносит урон.
+##Key Features
+- **5 unique locations** with procedurally generated enemies and items.
+- **Combat system**: attack, use potions, view stats, and **escape** (50% chance).
+- **Save system**: full progress tracking (HP, inventory, location state, defeated enemies, opened doors and chests).
+- **NPCs and dialogue**: interact with merchants and hermits. You can obtain items, open doors, or **jump straight into combat** from the dialogue menu.
+- **Locked chests and doors**: to open them, you must solve a math problem, answer a riddle, or pick the lock. Making a mistake causes damage.
 
-## 🕹️ Управление
-Игра полностью управляется вводом чисел (выбор пункта меню).
-- `1, 2, 3...` — выбор действия (перемещение, бой, сундук, NPC).
-- В инвентаре: экипировка оружия, использование зелий.
-- В бою: атака, зелье, статы, побег.
+## Controls
+The game is controlled entirely by entering numbers (selecting menu options).
+- `1, 2, 3...` — select an action (movement, combat, chest, NPC).
+- In inventory: equip weapons, use potions.
+- In combat: attack, potion, stats, escape.
 
-## 🛠️ Сборка и запуск
+## Build and Run
 
-### Вариант 1: Visual Studio (Windows)
-1. Откройте файл `Terminal_game.sln` в Visual Studio.
-2. Убедитесь, что выбрана конфигурация `Debug` или `Release` и платформа `x64`.
-3. Нажмите **Ctrl + Shift + B** (Собрать решение) или **F5** (Запуск с отладкой).
+### Option 1: Visual Studio (Windows)
+1. Open the `Terminal_game.sln` file in Visual Studio.
+2. Ensure the `Debug` or `Release` configuration and `x64` platform are selected.
+3. Press **Ctrl + Shift + B** (Build Solution) or **F5** (Start Debugging).
 
-### Вариант 2: Через Makefile (GCC / MinGW / Linux / macOS)
-Если у вас установлен компилятор `g++` и утилита `make`:
-1. Откройте терминал в папке с исходным кодом (где лежат все `.cpp` файлы).
-2. Выполните команду для сборки:
-   ```bash
-   make
+### Option 2: Using Makefile (GCC / MinGW / Linux / macOS)
+If you have the `g++` compiler and `make` utility installed:
+1. Open a terminal in the source code folder (where all `.cpp` files are located).
+2. Run the build command:
+   make or mingw32-make
