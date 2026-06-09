@@ -28,10 +28,10 @@ If you have the `g++` compiler and `make` utility installed:
 2. Run the build command:
    make or mingw32-make
 ### Option 3:How to run
-1.On Windows you just run terminal_game.exe
+1.On Windows you just run terminal_game.exe   .
 2.On Linux you need:
-   2.1 Run terminal in folder where save terminal_game (same folder where Makefile)
-   2.2 Print   ./terminal_game
+2.1 Run terminal in folder where save terminal_game (same folder where Makefile).
+2.2 Print   ./terminal_game   .
 
 ### Option 4:GOOD LUCK
 Thank's for playing! That's my first game on C++ (and i now, this is peace of ... bad)
