@@ -4,7 +4,6 @@
 #include <limits>
 #include "location_factory.h"
 #include "logger.h"
-#include "platform.h"
 
 Player::Player(std::shared_ptr<Location> startLocation)
 	: Entity("Player", 100, 1), currentLocation(std::move(startLocation))
@@ -13,7 +12,7 @@ Player::Player(std::shared_ptr<Location> startLocation)
 
 bool Player::use_potion()
 {
-	auto potions = inventory.get_potions();
+		auto potions = inventory.get_potions();
 	if (potions.empty()) return false;
 	Potion* p = potions[0];
 	if (!p) return false;
@@ -51,7 +50,7 @@ int Player::getDamage() const
 
 void Player::equip_best_weapon()
 {
-	auto weapons = inventory.get_weapons();
+		auto weapons = inventory.get_weapons();
 	if (weapons.empty()) return;
 	Weapon* best = weapons[0];
 	for (Weapon* w : weapons) {
@@ -66,7 +65,7 @@ void Player::equip_best_weapon()
 
 bool Player::equip_weapon_by_index(int index)
 {
-	auto weapons = inventory.get_weapons();
+		auto weapons = inventory.get_weapons();
 	if (index < 1 || index > static_cast<int>(weapons.size())) {
 		return false;
 	}
@@ -81,8 +80,9 @@ void Player::play()
 	bool isRunning = true;
 	while (isRunning)
 	{
-		clearScreen();
-
+#ifdef _WIN32
+		system("cls");
+#endif
 		currentLocation->init();
 		auto actions = currentLocation->getActions(*this);
 		std::cout << "\n--- Available actions ---\n";
@@ -97,7 +97,9 @@ void Player::play()
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << "Input error.\n";
-			waitForEnter();
+#ifdef _WIN32
+			system("pause");
+#endif
 			continue;
 		}
 
@@ -123,7 +125,9 @@ void Player::play()
 		}
 		else if (nextLocationId == -4)
 		{
-			clearScreen();
+#ifdef _WIN32
+			system("cls");
+#endif
 			std::cout << R"(
 
 =========================================
@@ -147,12 +151,16 @@ void Player::play()
 		{
 			std::cout << "\nMoving to location " << nextLocationId << "...\n";
 			Logger::instance().log("Transition to location " + std::to_string(nextLocationId));
-			waitForEnter();
+#ifdef _WIN32
+			system("pause");
+#endif
 			currentLocation = LocationFactory::get(nextLocationId);
 		}
 		else
 		{
-			waitForEnter();
+#ifdef _WIN32
+			system("pause");
+#endif
 		}
 	}
 }

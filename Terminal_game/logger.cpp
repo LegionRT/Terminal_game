@@ -1,4 +1,7 @@
+#ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include "logger.h"
 #include <chrono>
 #include <ctime>
@@ -19,7 +22,11 @@ Logger::Logger()
 		std::time_t t = std::chrono::system_clock::to_time_t(now);
 
 		std::tm timeinfo;
+#ifdef _WIN32
 		if (localtime_s(&timeinfo, &t) == 0)
+#else
+		if (localtime_r(&t, &timeinfo) != nullptr)
+#endif
 		{
 			ofs << "--- Log started: " << std::put_time(&timeinfo, "%F %T") << " ---\n";
 		}
@@ -44,7 +51,11 @@ void Logger::log(const std::string& msg)
 	std::time_t t = std::chrono::system_clock::to_time_t(now);
 
 	std::tm timeinfo;
+#ifdef _WIN32
 	if (localtime_s(&timeinfo, &t) == 0)
+#else
+	if (localtime_r(&t, &timeinfo) != nullptr)
+#endif
 	{
 		ofs << "[" << std::put_time(&timeinfo, "%F %T") << "] " << msg << "\n";
 	}

@@ -24,8 +24,7 @@ bool Chest::is_empty() const {
 }
 
 void Chest::clear_contents() {
-	contents.clear(); // Используем метод clear из Inventory
-}
+	contents.clear(); }
 
 void Chest::interact(Player& player) {
 	if (is_empty()) {
@@ -80,8 +79,7 @@ public:
 	Chest() = default;
 	void generate_loot(int mapId);
 
-	// <-- ВСЕ ЭТИ МЕТОДЫ ТЕПЕРЬ В СЕКЦИИ PUBLIC
-	void set_locked(int puzzleNum) { is_locked = true; puzzle_number = puzzleNum; }
+		void set_locked(int puzzleNum) { is_locked = true; puzzle_number = puzzleNum; }
 	bool is_opened() const { return opened; }
 	void set_opened(bool val) { opened = val; }
 	bool is_empty() const;
@@ -265,8 +263,7 @@ DialogTree DialogTree::createHermitDialog() {
 		{"Who are you?", 1},
 		{"I need help.", 2},
 		{"Get out of my way!", 3},
-		{"I want to fight you!", 4} // <-- НОВЫЙ ВАРИАНТ
-	};
+		{"I want to fight you!", 4} 	};
 	tree.addNode(root);
 
 	DialogNode who;
@@ -294,8 +291,7 @@ DialogTree DialogTree::createHermitDialog() {
 	angry.outcome.turnHostile = true;
 	tree.addNode(angry);
 
-	// <-- НОВЫЙ УЗЕЛ ДЛЯ БОЯ
-	DialogNode fight;
+		DialogNode fight;
 	fight.id = 4;
 	fight.npcLine = "You dare challenge an old man? Very well, prepare to die!";
 	fight.choices = {};
@@ -317,8 +313,7 @@ DialogTree DialogTree::createMerchantDialog() {
 		{"Got anything useful?", 1},
 		{"Can you open a door?", 2},
 		{"Goodbye.", -1},
-		{"I'm robbing you!", 3} // <-- НОВЫЙ ВАРИАНТ
-	};
+		{"I'm robbing you!", 3} 	};
 	root.outcome.endDialog = true;
 	tree.addNode(root);
 
@@ -340,8 +335,7 @@ DialogTree DialogTree::createMerchantDialog() {
 	door.outcome.unlockDoor = true;
 	tree.addNode(door);
 
-	// <-- НОВЫЙ УЗЕЛ ДЛЯ БОЯ
-	DialogNode rob;
+		DialogNode rob;
 	rob.id = 3;
 	rob.npcLine = "Thief! You think you can just take my goods? I'll teach you a lesson!";
 	rob.choices = {};
@@ -558,12 +552,11 @@ private:
     std::string name;
 
 public:
-    Entity(const std::string& n, int hp, int dmg) : name(n), health(hp), damage(dmg) {}
+    Entity(const std::string& n, int hp, int dmg) : health(hp), damage(dmg), name(n) {}
     int getHealth() const { return health; }
     int& getHealthRef() { return health; }
     int getDamage() const { return damage; }
-    // Backwards-compatible alias
-    int detDamage() const { return getDamage(); }
+        int detDamage() const { return getDamage(); }
     const std::string& getName() const { return name; }
 
     void take_damage(int amount) { health -= amount; if (health < 0) health = 0; }
@@ -632,7 +625,6 @@ void Inventory::show_items() const {
 	}
 }
 
-// <-- ИСПРАВЛЕНО: убран static, теперь возврат по значению (безопасно)
 std::vector<Weapon*> Inventory::get_weapons() const {
 	std::vector<Weapon*> weapons;
 	for (Item* item : items) {
@@ -679,10 +671,8 @@ public:
 	void transfer_all_to(Inventory& dest);
 	void show_items() const;
 
-	void clear(); // <-- ОБЪЯВЛЕН ТОЛЬКО ОДИН РАЗ
-
-	// Возврат по значению, без & (безопасно)
-	std::vector<Weapon*> get_weapons() const;
+	void clear(); 
+		std::vector<Weapon*> get_weapons() const;
 	std::vector<Potion*> get_potions() const;
 
 	const std::vector<Item*>& get_all_items() const { return items; }
@@ -826,8 +816,7 @@ std::vector<std::string> Location::getActions(Player& player)
 
 	actions.emplace_back("Inventory (HP: " + std::to_string(player.getHealth())
 		+ ", damage: " + std::to_string(player.getDamage()) + ")");
-	actions.emplace_back("Save game");       // <-- ДОБАВЛЕНО
-	actions.emplace_back("Exit game");
+	actions.emplace_back("Save game");       	actions.emplace_back("Exit game");
 	return actions;
 }
 
@@ -967,15 +956,13 @@ int Location::handleAction(int choice, Player& player)
 
 	size_t index = 0;
 
-	// 1. Обработка дверей
-	if (choice >= 1 && choice <= static_cast<int>(doors.size()))
+		if (choice >= 1 && choice <= static_cast<int>(doors.size()))
 	{
 		return handleDoorAction(choice - 1, player);
 	}
 	index += doors.size();
 
-	// 2. Обработка врагов
-	std::vector<size_t> aliveEnemyIndices;
+		std::vector<size_t> aliveEnemyIndices;
 	for (size_t i = 0; i < enemies.size(); ++i) {
 		if (enemies[i].alive) aliveEnemyIndices.push_back(i);
 	}
@@ -993,8 +980,7 @@ int Location::handleAction(int choice, Player& player)
 		}
 		if (result == BattleResult::Escaped) {
 			std::cout << "You escaped from " << spawn.enemy->getName() << "!\n";
-			return -1; // <-- ИСПРАВЛЕНО: возвращаемся в меню локации после побега
-		}
+			return -1; 		}
 		if (result == BattleResult::Victory) {
 			spawn.alive = false;
 			spawn.enemy->drop_loot(player.get_inventory());
@@ -1003,12 +989,10 @@ int Location::handleAction(int choice, Player& player)
 				return -4;
 			}
 		}
-		return -1; // <-- КРИТИЧЕСКИ ВАЖНО: возвращаемся в меню после боя с обычным врагом
-	}
+		return -1; 	}
 	index += aliveEnemyIndices.size();
 
-	// 3. Обработка сундуков
-	std::vector<size_t> availableChestIndices;
+		std::vector<size_t> availableChestIndices;
 	for (size_t i = 0; i < chests.size(); ++i) {
 		if (!chests[i].chest.is_empty()) availableChestIndices.push_back(i);
 	}
@@ -1022,8 +1006,7 @@ int Location::handleAction(int choice, Player& player)
 	}
 	index += availableChestIndices.size();
 
-	// 4. Обработка NPC
-	std::vector<size_t> activeNpcIndices;
+		std::vector<size_t> activeNpcIndices;
 	for (size_t i = 0; i < npcs.size(); ++i) {
 		if (!npcs[i].active || !npcs[i].npc || !npcs[i].npc->is_alive()) continue;
 		if (npcs[i].npc->is_friendly()) {
@@ -1043,11 +1026,9 @@ int Location::handleAction(int choice, Player& player)
 		if (!spawn.npc) return -1;
 
 		if (spawn.npc->is_friendly()) {
-			// Запускаем диалог
-			spawn.npc->interact(player, *this);
+						spawn.npc->interact(player, *this);
 
-			// ЕСЛИ ПОСЛЕ ДИАЛОГА NPC СТАЛ ВРАЖДЕБНЫМ, СРАЗУ НАЧИНАЕМ БОЙ
-			if (spawn.npc->is_hostile()) {
+						if (spawn.npc->is_hostile()) {
 				std::cout << "\n";
 				CombatSystem combat(player, *spawn.npc);
 				BattleResult result = combat.startBattle();
@@ -1063,8 +1044,7 @@ int Location::handleAction(int choice, Player& player)
 			}
 		}
 		else {
-			// Если NPC уже враждебен, сразу бой
-			CombatSystem combat(player, *spawn.npc);
+						CombatSystem combat(player, *spawn.npc);
 			BattleResult result = combat.startBattle();
 
 			if (result == BattleResult::Defeat || !player.is_alive()) return -3;
@@ -1080,14 +1060,12 @@ int Location::handleAction(int choice, Player& player)
 	}
 	index += activeNpcIndices.size();
 
-	// 5. Обработка Инвентаря
-	if (choice == static_cast<int>(index + 1))
+		if (choice == static_cast<int>(index + 1))
 	{
 		return handleInventoryMenu(player);
 	}
 
-	// 6. Обработка Сохранения
-	if (choice == static_cast<int>(index + 2))
+		if (choice == static_cast<int>(index + 2))
 	{
 		if (SaveManager::save_game(player)) {
 			std::cout << "\n[SUCCESS] Game saved successfully to savegame.txt!\n";
@@ -1101,15 +1079,14 @@ int Location::handleAction(int choice, Player& player)
 		return -1;
 	}
 
-	// 7. Обработка Выхода
-	if (choice == static_cast<int>(index + 3))
+		if (choice == static_cast<int>(index + 3))
 	{
 		return -2;
 	}
 
 	std::cout << "Invalid choice.\n";
 	return -1;
-} // <-- ВОТ ЭТА САМАЯ ЗАКРЫВАЮЩАЯ СКОБКА, КОТОРОЙ ТЕБЕ НЕ ХВАТАЛО!
+} 
 #pragma once
 #include "map.h"
 #include <string>
@@ -1134,29 +1111,24 @@ public:
 	bool unlockDoorToLocation(int sourceId, int matchX = -1, int matchY = -1);
 
 	Map& getMap() { return map; }
-	const Map& getMap() const { return map; } // <-- ДОБАВЛЕНО
-};
+	const Map& getMap() const { return map; } };
 #include "location_factory.h"
 #include "location.h"
 #include <map>
 #include <memory>
-#include <mutex>
 
 std::shared_ptr<Location> LocationFactory::get(int id)
 {
-    static std::map<int, std::shared_ptr<Location>> cache;
-    static std::mutex mtx;
+	static std::map<int, std::shared_ptr<Location>> cache;
 
-    std::lock_guard<std::mutex> lk(mtx);
-    auto it = cache.find(id);
-    if (it != cache.end())
-    {
-        return it->second;
-    }
-
-    auto loc = std::make_shared<Location>(id);
-    cache[id] = loc;
-    return loc;
+	auto it = cache.find(id);
+	if (it != cache.end())
+	{
+		return it->second;
+	}
+	auto loc = std::make_shared<Location>(id);
+	cache[id] = loc;
+	return loc;
 }
 #pragma once
 #include <memory>
@@ -1174,9 +1146,15 @@ public:
 #include <cstdlib>
 #include <algorithm>
 #include "logger.h"
+#include <random>
 
 #ifdef _WIN32
+#ifdef _WIN32
+#ifdef _WIN32
 #include <windows.h>
+#include "platform.h"
+#endif
+#endif
 #endif
 
 LockpickPuzzle::LockpickPuzzle()
@@ -1190,10 +1168,9 @@ void LockpickPuzzle::reset()
 	pins.clear();
 	state.clear();
 
-	int count = rand() % 3 + 3; // 3-5 pins
-
+	int count = rand() % 3 + 3; 
 	std::vector<int> all = { 1, 2, 3, 4, 5 };
-	std::random_shuffle(all.begin(), all.end());
+	std::shuffle(all.begin(), all.end(), std::mt19937(std::random_device{}()));
 
 	for (int i = 0; i < count; i++)
 	{
@@ -1205,7 +1182,7 @@ void LockpickPuzzle::reset()
 void LockpickPuzzle::render()
 {
 #ifdef _WIN32
-	system("cls");
+	clearScreen();
 #endif
 
 	std::cout << "=== LOCKPICK PUZZLE ===\n\n";
@@ -1263,7 +1240,7 @@ bool LockpickPuzzle::solve()
 			Logger::instance().log("Lockpick failed, resetting");
 
 #ifdef _WIN32
-			system("pause");
+			waitForEnter();
 #endif
 
 			reset();
@@ -1313,6 +1290,10 @@ private:
 	void render();
 	void reset();
 };
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include "logger.h"
 #include <chrono>
 #include <ctime>
@@ -1320,83 +1301,97 @@ private:
 
 Logger& Logger::instance()
 {
-    static Logger lg;
-    return lg;
+	static Logger lg;
+	return lg;
 }
 
 Logger::Logger()
 {
-    ofs.open("game_log.txt", std::ios::out | std::ios::app);
-    if (ofs)
-    {
-        auto now = std::chrono::system_clock::now();
-        std::time_t t = std::chrono::system_clock::to_time_t(now);
-        std::tm timeinfo;
+	ofs.open("game_log.txt", std::ios::out | std::ios::app);
+	if (ofs)
+	{
+		auto now = std::chrono::system_clock::now();
+		std::time_t t = std::chrono::system_clock::to_time_t(now);
+
+		std::tm timeinfo;
 #ifdef _WIN32
-        localtime_s(&timeinfo, &t);
+		if (localtime_s(&timeinfo, &t) == 0)
 #else
-        localtime_r(&t, &timeinfo);
+		if (localtime_r(&t, &timeinfo) != nullptr)
 #endif
-        ofs << "--- Log started: " << std::put_time(&timeinfo, "%F %T") << " ---\n";
-    }
+		{
+			ofs << "--- Log started: " << std::put_time(&timeinfo, "%F %T") << " ---\n";
+		}
+	}
 }
 
 Logger::~Logger()
 {
-    if (ofs)
-    {
-        ofs << "--- Log closed ---\n";
-        ofs.close();
-    }
+	if (ofs)
+	{
+		ofs << "--- Log closed ---\n";
+		ofs.close();
+	}
 }
 
 void Logger::log(const std::string& msg)
 {
-    std::lock_guard<std::mutex> lk(mtx);
-    if (!ofs)
-        return;
-    auto now = std::chrono::system_clock::now();
-    std::time_t t = std::chrono::system_clock::to_time_t(now);
-    std::tm timeinfo;
+	if (!ofs)
+		return;
+
+	auto now = std::chrono::system_clock::now();
+	std::time_t t = std::chrono::system_clock::to_time_t(now);
+
+	std::tm timeinfo;
 #ifdef _WIN32
-    localtime_s(&timeinfo, &t);
+	if (localtime_s(&timeinfo, &t) == 0)
 #else
-    localtime_r(&t, &timeinfo);
+	if (localtime_r(&t, &timeinfo) != nullptr)
 #endif
-    ofs << "[" << std::put_time(&timeinfo, "%F %T") << "] " << msg << "\n";
-    ofs.flush();
+	{
+		ofs << "[" << std::put_time(&timeinfo, "%F %T") << "] " << msg << "\n";
+	}
+	ofs.flush();
 }
 #pragma once
-
 #include <string>
 #include <fstream>
-#include <mutex>
 
 class Logger
 {
 public:
-    static Logger& instance();
-    void log(const std::string& msg);
-
+	static Logger& instance();
+	void log(const std::string& msg);
 private:
-    Logger();
-    ~Logger();
-    Logger(const Logger&) = delete;
-    Logger& operator=(const Logger&) = delete;
-
-    std::ofstream ofs;
-    std::mutex mtx;
+	Logger();
+	~Logger();
+	Logger(const Logger&) = delete;
+	Logger& operator=(const Logger&) = delete;
+	std::ofstream ofs;
 };
 #include <iostream>
 #include "location_factory.h"
 #include "player.h"
 #include "save_manager.h"
+#ifdef _WIN32
+#ifdef _WIN32
 #include <windows.h>
+#include "platform.h"
+#endif
+#endif
 
 int main()
 {
-	SetConsoleOutputCP(65001);
-	SetConsoleCP(65001);
+	#ifdef _WIN32
+#ifdef _WIN32
+    SetConsoleOutputCP(65001);
+#endif
+#endif
+	#ifdef _WIN32
+#ifdef _WIN32
+    SetConsoleCP(65001);
+#endif
+#endif
 
 	std::cout << "1. New game\n";
 	std::cout << "2. Load game\n";
@@ -1413,9 +1408,7 @@ int main()
 		Player tempPlayer(tempLoc);
 		if (SaveManager::load_game(tempPlayer)) {
 			std::cout << "Game loaded successfully!\n";
-			player = new Player(std::move(tempLoc)); // Упрощенная инициализация после загрузки
-			// В реальном проекте лучше перенести состояние, но для простоты:
-			SaveManager::load_game(*player);
+			player = new Player(std::move(tempLoc)); 						SaveManager::load_game(*player);
 		}
 		else {
 			std::cout << "Save file not found. Starting new game.\n";
@@ -1532,8 +1525,7 @@ void Map::spawnEntities()
 	}
 
 	npcs.clear();
-	// ИСПРАВЛЕНО: корректный расчет индекса для сундука на 5-м уровне
-	size_t tileIdx = (mapId == 5) ? 1 : static_cast<size_t>(enemyCount);
+		size_t tileIdx = (mapId == 5) ? 1 : static_cast<size_t>(enemyCount);
 
 	if (tileIdx < freeTiles.size()) {
 		MapChestSpawn chestSpawn;
@@ -1541,8 +1533,7 @@ void Map::spawnEntities()
 		chestSpawn.y = freeTiles[tileIdx].second;
 		chestSpawn.chest.generate_loot(mapId);
 
-		// 40% шанс, что сундук будет заперт
-		if (rand() % 10 < 4) {
+				if (rand() % 10 < 4) {
 			chestSpawn.chest.set_locked(mapId % 3 + 1);
 		}
 
@@ -1814,8 +1805,7 @@ void Map::load_state(std::ifstream& file) {
 #include "chest.h"
 #include "npc.h"
 #include <string>
-#include <fstream> // <-- ДОБАВЛЕНО
-
+#include <fstream> 
 enum class TileType { Floor, Wall, Door, LockedDoor };
 
 struct MapEnemySpawn {
@@ -1867,8 +1857,7 @@ public:
 	static int getWidth() { return WIDTH; }
 	static int getHeight() { return HEIGHT; }
 
-	// <-- ДОБАВЛЕНО: методы для сохранения/загрузки состояния карты
-	void save_state(std::ofstream& file) const;
+		void save_state(std::ofstream& file) const;
 	void load_state(std::ifstream& file);
 };
 #include "math_puzzle.h"
@@ -1978,8 +1967,7 @@ void Npc::interact(Player& player, Location& location) {
 	std::cout << "\n--- Dialog with " << getName() << " ---\n";
 	Logger::instance().log(std::string("Dialog started with NPC: ") + getName());
 
-	// Запускаем диалог. Он всегда начинается с rootId, поэтому его можно перезапускать.
-	dialog.run([&](const DialogOutcome& outcome) {
+		dialog.run([&](const DialogOutcome& outcome) {
 		applyOutcome(outcome, player, location);
 		});
 
@@ -2014,18 +2002,35 @@ public:
 	bool is_hostile() const { return disposition == NpcDisposition::Hostile; }
 	bool is_friendly() const { return disposition == NpcDisposition::Friendly; }
 
-	// ТЕПЕРЬ ДИАЛОГ ДОСТУПЕН ВСЕГДА, ПОКА NPC ДРУЖЕЛЮБЕН
-	bool has_dialog_left() const { return is_friendly(); }
+		bool has_dialog_left() const { return is_friendly(); }
 
 	void turn_hostile();
 	void interact(Player& player, Location& location);
 };
+#pragma once
+#include <iostream>
+#include <limits>
+
+inline void clearScreen() {
+#ifdef _WIN32
+	system("cls");
+#else
+	system("clear");
+#endif
+}
+
+inline void waitForEnter() {
+	std::cout << "Press Enter...";
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cin.get();
+}
 #include "player.h"
 #include "weapon.h"
 #include <iostream>
 #include <limits>
 #include "location_factory.h"
 #include "logger.h"
+#include "platform.h" // <-- ДОБАВЛЕНО: чтобы работали clearScreen и waitForEnter
 
 Player::Player(std::shared_ptr<Location> startLocation)
 	: Entity("Player", 100, 1), currentLocation(std::move(startLocation))
@@ -2034,7 +2039,6 @@ Player::Player(std::shared_ptr<Location> startLocation)
 
 bool Player::use_potion()
 {
-	// ИСПРАВЛЕНО: auto вместо auto&, так как get_potions() теперь возвращает по значению
 	auto potions = inventory.get_potions();
 	if (potions.empty()) return false;
 	Potion* p = potions[0];
@@ -2073,7 +2077,6 @@ int Player::getDamage() const
 
 void Player::equip_best_weapon()
 {
-	// ИСПРАВЛЕНО: auto вместо auto&
 	auto weapons = inventory.get_weapons();
 	if (weapons.empty()) return;
 	Weapon* best = weapons[0];
@@ -2089,7 +2092,6 @@ void Player::equip_best_weapon()
 
 bool Player::equip_weapon_by_index(int index)
 {
-	// ИСПРАВЛЕНО: auto вместо auto&
 	auto weapons = inventory.get_weapons();
 	if (index < 1 || index > static_cast<int>(weapons.size())) {
 		return false;
@@ -2105,9 +2107,8 @@ void Player::play()
 	bool isRunning = true;
 	while (isRunning)
 	{
-#ifdef _WIN32
-		system("cls");
-#endif
+		clearScreen(); // <-- Убран #ifdef, теперь работает и на Win, и на Linux
+
 		currentLocation->init();
 		auto actions = currentLocation->getActions(*this);
 		std::cout << "\n--- Available actions ---\n";
@@ -2122,9 +2123,7 @@ void Player::play()
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << "Input error.\n";
-#ifdef _WIN32
-			system("pause");
-#endif
+			waitForEnter(); // <-- Убран #ifdef
 			continue;
 		}
 
@@ -2150,9 +2149,7 @@ void Player::play()
 		}
 		else if (nextLocationId == -4)
 		{
-#ifdef _WIN32
-			system("cls");
-#endif
+			clearScreen(); // <-- Убран #ifdef
 			std::cout << R"(
 
 =========================================
@@ -2176,16 +2173,12 @@ void Player::play()
 		{
 			std::cout << "\nMoving to location " << nextLocationId << "...\n";
 			Logger::instance().log("Transition to location " + std::to_string(nextLocationId));
-#ifdef _WIN32
-			system("pause");
-#endif
+			waitForEnter(); // <-- Убран #ifdef
 			currentLocation = LocationFactory::get(nextLocationId);
 		}
 		else
 		{
-#ifdef _WIN32
-			system("pause");
-#endif
+			waitForEnter(); // <-- Убран #ifdef
 		}
 	}
 }
@@ -2217,8 +2210,7 @@ public:
 	void equip_best_weapon();
 	bool equip_weapon_by_index(int index);
 
-	// <-- ДОБАВЛЕНО для системы сохранений
-	int get_current_location_id() const { return currentLocation ? currentLocation->getId() : 1; }
+		int get_current_location_id() const { return currentLocation ? currentLocation->getId() : 1; }
 	const Location* get_current_location() const { return currentLocation.get(); }
 	void set_location(std::shared_ptr<Location> loc) { currentLocation = loc; }
 	void setHealth(int hp) { getHealthRef() = hp; }
@@ -2446,8 +2438,7 @@ bool SaveManager::save_game(const Player& player, const std::string& filename) {
 
 	const Location* loc = player.get_current_location();
 	if (loc) {
-		loc->getMap().save_state(file); // <-- СОХРАНЯЕМ СОСТОЯНИЕ ЛОКАЦИИ
-	}
+		loc->getMap().save_state(file); 	}
 
 	file.close();
 	return true;
@@ -2465,8 +2456,7 @@ bool SaveManager::load_game(Player& player, const std::string& filename) {
 	bool mapStateFound = false;
 
 	while (std::getline(file, line)) {
-		if (!line.empty() && line.back() == '\r') line.pop_back(); // Защита от Windows \r\n
-
+		if (!line.empty() && line.back() == '\r') line.pop_back(); 
 		if (line.find("HP:") == 0) hp = std::stoi(line.substr(3));
 		else if (line.find("Location:") == 0) targetLocationId = std::stoi(line.substr(9));
 		else if (line.find("Weapon:") == 0) {
@@ -2485,12 +2475,10 @@ bool SaveManager::load_game(Player& player, const std::string& filename) {
 		}
 	}
 
-	// Загружаем локацию и применяем состояние
-	auto newLoc = LocationFactory::get(targetLocationId);
+		auto newLoc = LocationFactory::get(targetLocationId);
 	player.set_location(newLoc);
 	player.setHealth(hp);
-	player.get_inventory().clear(); // <-- ОЧИЩАЕМ перед загрузкой
-
+	player.get_inventory().clear(); 
 	for (const auto& w : savedWeapons) {
 		player.get_inventory().add_item_silent(new Weapon(w.first, w.second));
 	}
@@ -2500,8 +2488,7 @@ bool SaveManager::load_game(Player& player, const std::string& filename) {
 	player.equip_best_weapon();
 
 	if (mapStateFound) {
-		newLoc->getMap().load_state(file); // <-- ЗАГРУЖАЕМ СОСТОЯНИЕ ЛОКАЦИИ
-	}
+		newLoc->getMap().load_state(file); 	}
 
 	file.close();
 	return true;
@@ -2534,3 +2521,48 @@ class Weapon : public Item {
 
     int get_damage_bonus() const { return bonus_damage; }
 };
+#pragma once
+
+#include <iostream>
+#include <limits>
+
+#ifdef _WIN32
+#ifdef _WIN32
+#ifdef _WIN32
+#include <windows.h>
+#include "platform.h"
+#endif
+#endif
+#endif
+
+inline void clearScreen()
+{
+#ifdef _WIN32
+    clearScreen();
+#else
+    system("clear");
+#endif
+}
+
+inline void waitForEnter()
+{
+    std::cout << "Press Enter...";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
+}
+
+inline void initConsole()
+{
+#ifdef _WIN32
+    #ifdef _WIN32
+#ifdef _WIN32
+    SetConsoleOutputCP(65001);
+#endif
+#endif
+    #ifdef _WIN32
+#ifdef _WIN32
+    SetConsoleCP(65001);
+#endif
+#endif
+#endif
+}

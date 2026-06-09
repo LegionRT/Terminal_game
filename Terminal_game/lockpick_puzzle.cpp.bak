@@ -4,8 +4,12 @@
 #include <cstdlib>
 #include <algorithm>
 #include "logger.h"
-#include <random>
-#include "platform.h"
+
+#ifdef _WIN32
+#ifdef _WIN32
+#include <windows.h>
+#endif
+#endif
 
 LockpickPuzzle::LockpickPuzzle()
 	: Puzzle("Lockpick")
@@ -20,7 +24,7 @@ void LockpickPuzzle::reset()
 
 	int count = rand() % 3 + 3; 
 	std::vector<int> all = { 1, 2, 3, 4, 5 };
-	std::shuffle(all.begin(), all.end(), std::mt19937(std::random_device{}()));
+	std::shuffle(all.begin(), all.end());
 
 	for (int i = 0; i < count; i++)
 	{
@@ -31,7 +35,9 @@ void LockpickPuzzle::reset()
 
 void LockpickPuzzle::render()
 {
+#ifdef _WIN32
 	clearScreen();
+#endif
 
 	std::cout << "=== LOCKPICK PUZZLE ===\n\n";
 	std::cout << "Pins (numbers 1-5):\n\n";
@@ -87,7 +93,9 @@ bool LockpickPuzzle::solve()
 
 			Logger::instance().log("Lockpick failed, resetting");
 
+#ifdef _WIN32
 			waitForEnter();
+#endif
 
 			reset();
 			continue;
