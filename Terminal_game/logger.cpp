@@ -18,7 +18,6 @@ Logger::Logger()
 		std::time_t t = std::chrono::system_clock::to_time_t(now);
 
 		std::tm timeinfo;
-		// В Windows localtime_s возвращает 0 при успешном выполнении
 		if (localtime_s(&timeinfo, &t) == 0)
 		{
 			ofs << "--- Log started: " << std::put_time(&timeinfo, "%F %T") << " ---\n";
