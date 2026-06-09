@@ -22,14 +22,21 @@ Logger::Logger()
 		std::time_t t = std::chrono::system_clock::to_time_t(now);
 
 		std::tm timeinfo;
-#ifdef _WIN32
+#ifdef _MSC_VER
+		// Только для Visual Studio
 		if (localtime_s(&timeinfo, &t) == 0)
 #else
-		if (localtime_r(&t, &timeinfo) != nullptr)
+		// Универсальный способ для MinGW и Linux
+		std::tm* ptr = std::localtime(&t);
+		if (ptr) {
+			timeinfo = *ptr;
 #endif
-		{
-			ofs << "--- Log started: " << std::put_time(&timeinfo, "%F %T") << " ---\n";
+			{
+				ofs << "--- Log started: " << std::put_time(&timeinfo, "%F %T") << " ---\n";
+			}
+#ifndef _MSC_VER
 		}
+#endif
 	}
 }
 
@@ -51,13 +58,18 @@ void Logger::log(const std::string& msg)
 	std::time_t t = std::chrono::system_clock::to_time_t(now);
 
 	std::tm timeinfo;
-#ifdef _WIN32
+#ifdef _MSC_VER
 	if (localtime_s(&timeinfo, &t) == 0)
 #else
-	if (localtime_r(&t, &timeinfo) != nullptr)
+	std::tm* ptr = std::localtime(&t);
+	if (ptr) {
+		timeinfo = *ptr;
 #endif
-	{
-		ofs << "[" << std::put_time(&timeinfo, "%F %T") << "] " << msg << "\n";
+		{
+			ofs << "[" << std::put_time(&timeinfo, "%F %T") << "] " << msg << "\n";
+		}
+#ifndef _MSC_VER
 	}
+#endif
 	ofs.flush();
 }
