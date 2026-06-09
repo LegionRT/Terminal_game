@@ -159,6 +159,7 @@
     <ClInclude Include="logger.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="math_puzzle.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="potion.h" />
     <ClInclude Include="puzzle.h" />

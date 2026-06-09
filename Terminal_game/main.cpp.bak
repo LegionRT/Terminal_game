@@ -2,10 +2,18 @@
 #include "location_factory.h"
 #include "player.h"
 #include "save_manager.h"
-#include "platform.h"
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 int main()
 {
-initConsole();
+	#ifdef _WIN32
+SetConsoleOutputCP(65001);
+#endif
+	#ifdef _WIN32
+SetConsoleCP(65001);
+#endif
 
 	std::cout << "1. New game\n";
 	std::cout << "2. Load game\n";
