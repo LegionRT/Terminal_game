@@ -1,2 +1,0 @@
-HP:100
-Location:3
