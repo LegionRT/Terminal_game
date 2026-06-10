@@ -20,19 +20,20 @@ initConsole();
 	if (choice == 2) {
 		auto tempLoc = LocationFactory::get(1);
 		Player tempPlayer(tempLoc);
-		if (SaveManager::load_game(tempPlayer)) {
-			std::cout << "Game loaded successfully!\n";
-			player = new Player(std::move(tempLoc)); 						SaveManager::load_game(*player);
+		if (choice == 2) {
+			startLoc = LocationFactory::get(1);
+			player = new Player(startLoc);
+			if (SaveManager::load_game(*player)) {
+				std::cout << "Game loaded successfully!\n";
+			}
+			else {
+				std::cout << "Save file not found or corrupted. Starting new game.\n";
+			}
 		}
 		else {
-			std::cout << "Save file not found. Starting new game.\n";
 			startLoc = LocationFactory::get(1);
 			player = new Player(startLoc);
 		}
-	}
-	else {
-		startLoc = LocationFactory::get(1);
-		player = new Player(startLoc);
 	}
 
 	player->play();
