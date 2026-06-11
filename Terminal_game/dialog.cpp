@@ -14,9 +14,25 @@ void DialogTree::addNode(const DialogNode& node) {
 }
 
 bool DialogTree::run(const std::function<void(const DialogOutcome&)>& applyOutcome) {
+	// Лямбда для изменения ноды "на лету"
+	auto applyMutation = [&](const DialogOutcome& out) {
+		if (out.mutateNodeId >= 0) {
+			for (auto& n : nodes) {
+				if (n.id == out.mutateNodeId) {
+					if (!out.mutateLine.empty()) n.npcLine = out.mutateLine;
+					if (out.removeReward) {
+						n.outcome.givePotion = false;
+						n.outcome.giveWeapon = false;
+						n.outcome.unlockDoor = false;
+					}
+				}
+			}
+		}
+		};
+
 	int currentId = rootId;
 	while (true) {
-		const DialogNode* node = findNode(currentId);
+		DialogNode* node = const_cast<DialogNode*>(findNode(currentId)); // Делаем ноду изменяемой
 		if (!node) {
 			std::cout << "Dialog ended.\n";
 			return false;
@@ -26,6 +42,7 @@ bool DialogTree::run(const std::function<void(const DialogOutcome&)>& applyOutco
 
 		if (node->choices.empty()) {
 			applyOutcome(node->outcome);
+			applyMutation(node->outcome); // <-- ПРИМЕНЯЕМ ЗДЕСЬ
 			return true;
 		}
 
@@ -50,6 +67,7 @@ bool DialogTree::run(const std::function<void(const DialogOutcome&)>& applyOutco
 		const DialogChoice& picked = node->choices[static_cast<size_t>(choice - 1)];
 		if (picked.nextNodeId < 0) {
 			applyOutcome(node->outcome);
+			applyMutation(node->outcome); // <-- И ЗДЕСЬ ТОЖЕ
 			return true;
 		}
 		currentId = picked.nextNodeId;
@@ -84,6 +102,8 @@ DialogTree DialogTree::createHermitDialog() {
 	help.outcome.givePotion = true;
 	help.outcome.potionName = "Greater Healing Potion";
 	help.outcome.potionHeal = 20;
+	tree.addNode(help);
+
 	tree.addNode(help);
 
 	DialogNode angry;
@@ -138,6 +158,8 @@ DialogTree DialogTree::createMerchantDialog() {
 	door.outcome.unlockDoor = true;
 	tree.addNode(door);
 
+
+
 		DialogNode rob;
 	rob.id = 3;
 	rob.npcLine = "Thief! You think you can just take my goods? I'll teach you a lesson!";
@@ -148,4 +170,43 @@ DialogTree DialogTree::createMerchantDialog() {
 
 	tree.setRoot(0);
 	return tree;
+}
+DialogTree DialogTree::createHermitAfterRewardDialog() {
+	DialogTree tree;
+	DialogNode root;
+	root.id = 0;
+	root.npcLine = "I have already helped you, traveler. Be careful on the deeper floors.";
+	root.choices = { {"Thank you, I'll remember that.", -1} };
+	root.outcome.endDialog = true;
+	tree.addNode(root);
+	tree.setRoot(0);
+	return tree;
+}
+
+DialogTree DialogTree::createMerchantAfterRewardDialog() {
+	DialogTree tree;
+	DialogNode root;
+	root.id = 0;
+	root.npcLine = "I have already helped you, traveler. Be careful on the deeper floors.";
+	root.choices = { {"Thank you, I'll remember that.", -1} };
+	root.outcome.endDialog = true;
+	tree.addNode(root);
+	tree.setRoot(0);
+	return tree;
+}
+void DialogTree::mutateNode(int nodeId, const std::string& newLine, bool removeRewards) {
+	for (auto& n : nodes) {
+		if (n.id == nodeId) {
+			if (!newLine.empty()) {
+				n.npcLine = newLine;
+			}
+			if (removeRewards) {
+				// Вырубаем выдачу предметов, чтобы игрок не фармил их бесконечно
+				n.outcome.givePotion = false;
+				n.outcome.giveWeapon = false;
+				n.outcome.unlockDoor = false;
+			}
+			break;
+		}
+	}
 }

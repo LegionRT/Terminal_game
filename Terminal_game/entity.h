@@ -16,6 +16,6 @@ public:
     const std::string& getName() const { return name; }
 
     void take_damage(int amount) { health -= amount; if (health < 0) health = 0; }
-    void heal(int amount) { health += amount; }
+	void heal(int amount){health += amount;if (health > 100)health = 100;}
     bool is_alive() const { return health > 0; }
 };

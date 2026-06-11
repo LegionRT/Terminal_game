@@ -115,10 +115,14 @@ void Map::spawnEntities()
 
 	std::unique_ptr<Npc> npc;
 	if (mapId == 1) {
-		npc = std::make_unique<Npc>(1, "Hermit", 40, 4, NpcDisposition::Friendly, DialogTree::createHermitDialog());
+		npc = std::make_unique<Npc>(1, "Hermit", 40, 4,
+			NpcDisposition::Friendly, DialogTree::createHermitDialog());
+		npc->setAfterRewardDialog(DialogTree::createHermitAfterRewardDialog());
 	}
 	else if (mapId == 3) {
-		npc = std::make_unique<Npc>(2, "Merchant", 35, 5, NpcDisposition::Friendly, DialogTree::createMerchantDialog());
+		npc = std::make_unique<Npc>(2, "Merchant", 35, 5,
+			NpcDisposition::Friendly, DialogTree::createMerchantDialog());
+		npc->setAfterRewardDialog(DialogTree::createMerchantAfterRewardDialog());
 	}
 
 	if (npc && tileIdx < freeTiles.size()) {
@@ -297,71 +301,72 @@ void Map::load_state(std::ifstream& file) {
 	std::string line;
 	int count = 0;
 
-	if (std::getline(file, line)) {
+	if (!std::getline(file, line)) return;
+	if (!line.empty() && line.back() == '\r') line.pop_back();
+
+	if (line == "MapStateStart") {
+		if (!std::getline(file, line)) return;
 		if (!line.empty() && line.back() == '\r') line.pop_back();
-		if (line.find("DoorsCount:") == 0) {
-			count = std::stoi(line.substr(11));
-			for (int i = 0; i < count; ++i) {
-				std::getline(file, line);
-				if (!line.empty() && line.back() == '\r') line.pop_back();
-				if (line.find("Door:") == 0) {
-					std::istringstream iss(line.substr(5));
-					int x, y, locked;
-					if (iss >> x >> y >> locked) {
-						for (auto& d : doors) {
-							if (d.getX() == x && d.getY() == y) {
-								if (!locked) d.unlock();
-								break;
-							}
+	}
+
+	if (line.find("DoorsCount:") == 0) {
+		count = std::stoi(line.substr(11));
+		for (int i = 0; i < count; ++i) {
+			std::getline(file, line);
+			if (!line.empty() && line.back() == '\r') line.pop_back();
+			if (line.find("Door:") == 0) {
+				std::istringstream iss(line.substr(5));
+				int x, y, locked;
+				if (iss >> x >> y >> locked) {
+					for (auto& d : doors) {
+						if (d.getX() == x && d.getY() == y) {
+							if (!locked) d.unlock();
+							break;
 						}
 					}
 				}
 			}
 		}
 	}
-
-	if (std::getline(file, line)) {
-		if (!line.empty() && line.back() == '\r') line.pop_back();
-		if (line.find("EnemiesCount:") == 0) {
-			count = std::stoi(line.substr(13));
-			for (int i = 0; i < count; ++i) {
-				std::getline(file, line);
-				if (!line.empty() && line.back() == '\r') line.pop_back();
-				if (line.find("Enemy:") == 0) {
-					std::istringstream iss(line.substr(6));
-					int x, y, alive;
-					if (iss >> x >> y >> alive) {
-						for (auto& e : enemies) {
-							if (e.x == x && e.y == y) {
-								e.alive = (alive != 0);
-								break;
-							}
+	if (!std::getline(file, line)) return;
+	if (!line.empty() && line.back() == '\r') line.pop_back();
+	if (line.find("EnemiesCount:") == 0) {
+		count = std::stoi(line.substr(13));
+		for (int i = 0; i < count; ++i) {
+			std::getline(file, line);
+			if (!line.empty() && line.back() == '\r') line.pop_back();
+			if (line.find("Enemy:") == 0) {
+				std::istringstream iss(line.substr(6));
+				int x, y, alive;
+				if (iss >> x >> y >> alive) {
+					for (auto& e : enemies) {
+						if (e.x == x && e.y == y) {
+							e.alive = (alive != 0);
+							break;
 						}
 					}
 				}
 			}
 		}
 	}
-
-	if (std::getline(file, line)) {
-		if (!line.empty() && line.back() == '\r') line.pop_back();
-		if (line.find("ChestsCount:") == 0) {
-			count = std::stoi(line.substr(12));
-			for (int i = 0; i < count; ++i) {
-				std::getline(file, line);
-				if (!line.empty() && line.back() == '\r') line.pop_back();
-				if (line.find("Chest:") == 0) {
-					std::istringstream iss(line.substr(6));
-					int x, y, opened;
-					if (iss >> x >> y >> opened) {
-						for (auto& c : chests) {
-							if (c.x == x && c.y == y) {
-								if (opened) {
-									c.chest.set_opened(true);
-									c.chest.clear_contents();
-								}
-								break;
+	if (!std::getline(file, line)) return;
+	if (!line.empty() && line.back() == '\r') line.pop_back();
+	if (line.find("ChestsCount:") == 0) {
+		count = std::stoi(line.substr(12));
+		for (int i = 0; i < count; ++i) {
+			std::getline(file, line);
+			if (!line.empty() && line.back() == '\r') line.pop_back();
+			if (line.find("Chest:") == 0) {
+				std::istringstream iss(line.substr(6));
+				int x, y, opened;
+				if (iss >> x >> y >> opened) {
+					for (auto& c : chests) {
+						if (c.x == x && c.y == y) {
+							if (opened) {
+								c.chest.set_opened(true);
+								c.chest.clear_contents();
 							}
+							break;
 						}
 					}
 				}

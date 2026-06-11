@@ -20,26 +20,48 @@ void Npc::turn_hostile() {
 
 void Npc::applyOutcome(const DialogOutcome& outcome, Player& player, Location& location) {
 	if (outcome.givePotion) {
-		player.get_inventory().add_item(new Potion(outcome.potionName, outcome.potionHeal));
-		std::cout << getName() << " gave you " << outcome.potionName << ".\n";
-	}
-	if (outcome.giveWeapon) {
-		player.get_inventory().add_item(new Weapon(outcome.weaponName, outcome.weaponBonus));
-		std::cout << getName() << " gave you " << outcome.weaponName << ".\n";
-		player.equip_best_weapon();
-	}
-	if (outcome.unlockDoor) {
-		auto& doors = location.getMap().getDoors();
-		for (auto& d : doors) {
-			if (d.isLocked()) {
-				d.unlock();
-				location.getMap().setTile(d.getX(), d.getY(), TileType::Door);
-				std::cout << "A locked door was opened!\n";
-				Logger::instance().log("NPC unlocked a door");
-				break;
-			}
+		if (!potionGiven) {
+			player.get_inventory().add_item(new Potion(outcome.potionName, outcome.potionHeal));
+			std::cout << getName() << " gave you " << outcome.potionName << ".\n";
+			potionGiven = true;
+		}
+		else {
+			// Уже дал зелье - показываем сообщение из afterRewardDialog
+			std::cout << "I have already helped you, traveler. Be careful on the deeper floors.\n";
 		}
 	}
+
+	if (outcome.giveWeapon) {
+		if (!weaponGiven) {
+			player.get_inventory().add_item(new Weapon(outcome.weaponName, outcome.weaponBonus));
+			std::cout << getName() << " gave you " << outcome.weaponName << ".\n";
+			player.equip_best_weapon();
+			weaponGiven = true;
+		}
+		else {
+			std::cout << getName() << ": I already gave you a weapon. Take care of it.\n";
+		}
+	}
+
+	if (outcome.unlockDoor) {
+		if (!doorUnlocked) {
+			auto& doors = location.getMap().getDoors();
+			for (auto& d : doors) {
+				if (d.isLocked()) {
+					d.unlock();
+					location.getMap().setTile(d.getX(), d.getY(), TileType::Door);
+					std::cout << "A locked door was opened!\n";
+					Logger::instance().log("NPC unlocked a door");
+					doorUnlocked = true;
+					break;
+				}
+			}
+		}
+		else {
+			std::cout << getName() << ": I already opened a door for you.\n";
+		}
+	}
+
 	if (outcome.turnHostile) {
 		turn_hostile();
 	}
@@ -54,9 +76,23 @@ void Npc::interact(Player& player, Location& location) {
 	std::cout << "\n--- Dialog with " << getName() << " ---\n";
 	Logger::instance().log(std::string("Dialog started with NPC: ") + getName());
 
-		dialog.run([&](const DialogOutcome& outcome) {
+	if (potionGiven) {
+		// У Отшельника ветка помощи имеет id = 2
+		dialog.mutateNode(2, "Sorry,but i already help you. I dont have any potion's");
+	}
+	if (weaponGiven) {
+		// У Торговца ветка торговли имеет id = 1
+		dialog.mutateNode(1, "I dont have sword anymore.");
+	}
+	if (doorUnlocked) {
+		// Ветка с дверью у Торговца имеет id = 2
+		dialog.mutateNode(2, "The door are unlocked already.");
+	}
+
+	// 2. И только после настройки запускаем сам диалог
+	dialog.run([&](const DialogOutcome& outcome) {
 		applyOutcome(outcome, player, location);
 		});
 
-	Logger::instance().log(std::string("Dialog finished with NPC: ") + getName());
+		Logger::instance().log(std::string("Dialog finished with NPC: ") + getName());
 }
