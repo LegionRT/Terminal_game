@@ -1,7 +1,0 @@
-var searchData=
-[
-  ['unlock_0',['unlock',['../class_door.html#af3d28c72297ed05c0361fb705b3db47f',1,'Door']]],
-  ['unlockdoortolocation_1',['unlockDoorToLocation',['../class_location.html#a29ce146f5d0a82fbdb63a46f930abd39',1,'Location']]],
-  ['use_2',['use',['../class_item.html#af9a7d453426e22b2dedbd4d1220e6d0e',1,'Item::use()'],['../class_potion.html#ac7a179db16fb4e196be3bcd270abd16b',1,'Potion::use()'],['../class_weapon.html#aa6fdad10588370b0d0b92488beeda583',1,'Weapon::use()']]],
-  ['use_5fpotion_3',['use_potion',['../class_player.html#a360e074d72b530a74a17aa78f12a043f',1,'Player']]]
-];
