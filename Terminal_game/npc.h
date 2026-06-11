@@ -16,6 +16,11 @@ private:
 	int npcId;
 	NpcDisposition disposition;
 	DialogTree dialog;
+	DialogTree afterRewardDialog;
+
+	bool potionGiven = false;
+	bool weaponGiven = false;
+	bool doorUnlocked = false;
 
 	void applyOutcome(const DialogOutcome& outcome, Player& player, Location& location);
 
@@ -26,9 +31,10 @@ public:
 	int getNpcId() const { return npcId; }
 	bool is_hostile() const { return disposition == NpcDisposition::Hostile; }
 	bool is_friendly() const { return disposition == NpcDisposition::Friendly; }
-
-		bool has_dialog_left() const { return is_friendly(); }
+	bool has_dialog_left() const { return is_friendly(); }
 
 	void turn_hostile();
 	void interact(Player& player, Location& location);
+
+	void setAfterRewardDialog(DialogTree t) { afterRewardDialog = std::move(t); }
 };

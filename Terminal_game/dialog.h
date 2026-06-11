@@ -13,8 +13,10 @@ struct DialogOutcome {
     int potionHeal = 0;
     std::string weaponName;
     int weaponBonus = 0;
+	int mutateNodeId = -1;       // ID ноды, которую хотим изменить (например, 2)
+	std::string mutateLine = ""; // Новая реплика NPC для этой ноды
+	bool removeReward = false;
 };
-
 struct DialogChoice {
     std::string playerLine;
     int nextNodeId;
@@ -39,8 +41,12 @@ public:
     void setRoot(int id) { rootId = id; }
     int getRoot() const { return rootId; }
 
+    void mutateNode(int nodeId, const std::string& newLine, bool removeRewards = true);
+
     bool run(const std::function<void(const DialogOutcome&)>& applyOutcome);
 
     static DialogTree createHermitDialog();
     static DialogTree createMerchantDialog();
+	static DialogTree createHermitAfterRewardDialog();
+	static DialogTree createMerchantAfterRewardDialog();
 };

@@ -36,8 +36,13 @@ BattleResult CombatSystem::playerTurn() {
 			}
 			return BattleResult::Victory;
 		case 3:
-			player.show_stats();
+		{
+			std::cout << "\n--- Enemy stats ---\n";
+			std::cout << "Name: " << opponent.getName() << "\n";
+			std::cout << "HP: " << opponent.getHealth() << "\n";
+			std::cout << "Damage: " << opponent.getDamage() << "\n";
 			continue;
+		}
 		case 4: {
 			std::cout << "Attempting to escape...\n";
 			if (rand() % 2 == 0) {

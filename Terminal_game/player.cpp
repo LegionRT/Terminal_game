@@ -13,6 +13,11 @@ Player::Player(std::shared_ptr<Location> startLocation)
 
 bool Player::use_potion()
 {
+	if (getHealth() >= 100)
+	{
+		std::cout << "You cannot drink a potion. Your health is already full.\n";
+		return false;
+	}
 	auto potions = inventory.get_potions();
 	if (potions.empty()) return false;
 	Potion* p = potions[0];
@@ -140,6 +145,8 @@ void Player::play()
 
 )";
 			std::cout << "\nYou completed the game!\n";
+			waitForEnter();
+
 			isRunning = false;
 			break;
 		}
