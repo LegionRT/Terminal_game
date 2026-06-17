@@ -35,3 +35,5 @@ If you have the `g++` compiler and `make` utility installed:
 
 ### Option 4:GOOD LUCK
 Thank's for playing! That's my first game on C++ (and i now, this is peace of ... bad)
+
+P.S. To the teacher classes and headers: https://legionrt.github.io/Terminal_game/
